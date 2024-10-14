@@ -5,8 +5,8 @@ import plotly.express as px
 
 CURR_GW = st.session_state.CURR_GW
 #
-GKP_DF = pd.read_csv("data/GKP_data.csv")
-GKP_DF_history = pd.read_csv("data/GKP_history.csv")
+GKP_DF = pd.read_csv("GKP_data.csv")
+GKP_DF_history = pd.read_csv("GKP_history.csv")
 # sidebar
 with st.sidebar:
     st.markdown(""":soccer: :green[FPL] *Infographics*""")
