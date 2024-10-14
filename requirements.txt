@@ -3,3 +3,4 @@ pandas
 tabulate
 plotly
 streamlit
+streamlit_extras
