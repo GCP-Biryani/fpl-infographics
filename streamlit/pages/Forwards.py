@@ -5,7 +5,7 @@ import plotly.express as px
 
 CURR_GW = st.session_state.CURR_GW
 #
-FWD_DF = pd.read_csv("data/FWD_data.csv")
+FWD_DF = pd.read_csv("./data/FWD_data.csv")
 FWD_DF_history  = pd.read_csv("data/FWD_history.csv")
 # sidebar
 with st.sidebar:
