@@ -5,7 +5,7 @@ import plotly.express as px
 
 CURR_GW = st.session_state.CURR_GW
 #
-DEF_DF = pd.read_csv("data/DEF_data.csv")
+DEF_DF = pd.read_csv("../data/DEF_data.csv")
 DEF_DF_history = pd.read_csv("data/DEF_history.csv")
 # sidebar
 with st.sidebar:
