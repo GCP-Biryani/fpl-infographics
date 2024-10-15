@@ -6,17 +6,17 @@ import time
 element_summary_url = "https://fantasy.premierleague.com/api/element-summary/{}/"
 
 def get_player_name(player_id):
-    player_raw = pd.read_csv('data/players_raw.csv')
+    player_raw = pd.read_csv('players_raw.csv')
     name = player_raw.loc[player_raw['id'] == player_id]['web_name'].to_string(index=False)
     return name
 
 def get_player_team(player_id):
-    player_raw = pd.read_csv('data/players_raw.csv')
+    player_raw = pd.read_csv('players_raw.csv')
     team = player_raw.loc[player_raw['id'] == player_id]['team'].to_string(index=False)
     return team
 
 def get_player_position(player_id):
-    player_raw = pd.read_csv('data/players_raw.csv')
+    player_raw = pd.read_csv('players_raw.csv')
     position = player_raw.loc[player_raw['id'] == player_id]['element_type'].to_string(index=False)
     return position
 
