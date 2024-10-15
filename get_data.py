@@ -2,12 +2,12 @@
 import requests
 import pandas as pd
 import numpy as np
-from scripts.functions import *
+from functions import *
 pd.options.mode.chained_assignment = None
 
 # %%
 #
-players_unused_columns = ['chance_of_playing_next_round','chance_of_playing_this_round','code','cost_change_event','cost_change_event_fall','cost_change_start','cost_change_start_fall','in_dreamteam','special','squad_number','transfers_in','transfers_in_event','transfers_out','transfers_out_event','region','influence_rank_type','creativity_rank_type','threat_rank_type','ict_index_rank_type','corners_and_indirect_freekicks_order','corners_and_indirect_freekicks_text','direct_freekicks_order','direct_freekicks_text','penalties_order','penalties_text','now_cost_rank','now_cost_rank_type','form_rank','form_rank_type','points_per_game_rank','points_per_game_rank_type','selected_rank','selected_rank_type','dreamteam_count','news','news_added','photo','first_name','second_name']
+players_unused_columns = ['chance_of_playing_next_round','chance_of_playing_this_round','code','cost_change_event','cost_change_event_fall','cost_change_start','cost_change_start_fall','in_dreamteam','special','squad_number','transfers_in','transfers_in_event','transfers_out','transfers_out_event','region','influence_rank_type','creativity_rank_type','threat_rank_type','ict_index_rank_type','corners_and_indirect_freekicks_text','direct_freekicks_text','penalties_text','now_cost_rank','now_cost_rank_type','form_rank','form_rank_type','points_per_game_rank','points_per_game_rank_type','selected_rank','selected_rank_type','dreamteam_count','photo','first_name','second_name']
 
 # %%
 url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
@@ -87,7 +87,7 @@ MID_DF_history.to_csv('MID_history.csv',index=False)
 # %%
 #FWD
 FWD_DF_history = players_df.loc[players_df['element_type'] == 'FWD']
-FWD_DF_history = FWD_DF_history.sort_values('total_points',ascending=False).head(15)
+FWD_DF_history = FWD_DF_history.sort_values('total_points',ascending=False).head(20)
 FWD_DF_history = FWD_DF_history['id'].to_list()
 FWD_DF_history = extract_all_players_data(FWD_DF_history)
 FWD_DF_history = pd.DataFrame(FWD_DF_history)

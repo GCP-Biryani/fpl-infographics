@@ -53,7 +53,7 @@ with tab6:
 
 ############
 st.markdown(
-    "##### Weekly stats for Top-15 points getters"
+    "##### Weekly stats for Top-20 points getters"
 )
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["Points","xGI","ICT","BPS","Minutes"])
 with tab1:
