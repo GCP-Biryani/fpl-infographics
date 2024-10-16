@@ -5,6 +5,10 @@ import plotly.express as px
 
 CURR_GW = st.session_state.CURR_GW
 #
+# page config
+st.set_page_config(
+    page_title="Set piece takers • FPL Infographics", page_icon=":goal_net:",layout="wide"
+)
 # sidebar
 with st.sidebar:
     st.markdown(""":soccer: :green[FPL] *Infographics*""")
@@ -17,7 +21,7 @@ with st.sidebar:
 
 ############
 st.markdown(
-    "##### Set piece takers"
+    "##### Set piece takers :goal_net:"
 )
 PLAYERS_DF = pd.read_csv("players_data.csv")
 FK_DF = PLAYERS_DF[PLAYERS_DF['direct_freekicks_order'] == 1]

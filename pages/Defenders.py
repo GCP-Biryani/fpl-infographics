@@ -7,6 +7,11 @@ CURR_GW = st.session_state.CURR_GW
 #
 DEF_DF = pd.read_csv("DEF_data.csv")
 DEF_DF_history = pd.read_csv("DEF_history.csv")
+
+# page config
+st.set_page_config(
+    page_title="Defender Stats • FPL Infographics", page_icon=":soccer:",layout="wide"
+)
 # sidebar
 with st.sidebar:
     st.markdown(""":soccer: :green[FPL] *Infographics*""")

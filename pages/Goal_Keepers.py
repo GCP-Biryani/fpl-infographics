@@ -7,6 +7,11 @@ CURR_GW = st.session_state.CURR_GW
 #
 GKP_DF = pd.read_csv("GKP_data.csv")
 GKP_DF_history = pd.read_csv("GKP_history.csv")
+#
+# page config
+st.set_page_config(
+    page_title="Goal Keepers Stats • FPL Infographics", page_icon=":soccer:",layout="wide"
+)
 # sidebar
 with st.sidebar:
     st.markdown(""":soccer: :green[FPL] *Infographics*""")

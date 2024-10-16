@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import requests
-from streamlit_extras.switch_page_button import switch_page
+
 #
 url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
 r = requests.get(url)
@@ -15,9 +15,15 @@ st.session_state.CURR_GW = CURR_GW
 st.set_page_config(
     page_title="Home • FPL Infographics", page_icon=":soccer:",layout="wide"
 )
+LOGO = "logo.png"
+st.logo(
+    LOGO,
+    icon_image=LOGO,
+    )
 
 # sidebar
 with st.sidebar:
+    
     st.title(":soccer: FPL Infographics")
     st.caption(
         """Latest gameweek data: :blue["""
@@ -80,7 +86,3 @@ st.markdown(
         * Doubtful players and News
     """
 )
-#
-enter_analysis = st.button("Click to get started")
-if enter_analysis:
-    switch_page("Forwards")
