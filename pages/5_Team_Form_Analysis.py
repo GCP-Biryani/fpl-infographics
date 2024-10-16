@@ -9,8 +9,13 @@ TEAM_FORM_DF = pd.read_csv('team_form.csv', index_col=False)
 TEAM_FDR_DF = pd.read_csv('team_fdr.csv', index_col=False)
 #
 st.set_page_config(
-    page_title="Team Stats • FPL Infographics", page_icon=":toolbox:",layout="wide"
+    page_title="Team FORM Analysis • FPL Infographics", page_icon=":toolbox:",layout="wide"
 )
+LOGO = "logo.png"
+st.logo(
+    LOGO,
+    icon_image=LOGO,
+    )
 # sidebar
 with st.sidebar:
     st.markdown(""":soccer: :green[FPL] *Infographics*""")

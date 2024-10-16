@@ -12,14 +12,16 @@ GKP_DF_history = pd.read_csv("GKP_history.csv")
 st.set_page_config(
     page_title="Goal Keepers Stats • FPL Infographics", page_icon=":soccer:",layout="wide"
 )
+LOGO = "logo.png"
+st.logo(
+    LOGO,
+    icon_image=LOGO,
+    )
 # sidebar
 with st.sidebar:
     st.markdown(""":soccer: :green[FPL] *Infographics*""")
     st.caption(
-        """Latest gameweek data: :blue["""
-        + str(CURR_GW)
-        + """]  
-                [thecloudtechnologist](https://github.com/thecloudtechnologist)"""
+        """[thecloudtechnologist](https://github.com/thecloudtechnologist)"""
     )
 
 ############

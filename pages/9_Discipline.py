@@ -6,6 +6,16 @@ import plotly.express as px
 CURR_GW = st.session_state.CURR_GW
 #
 PLAYERS_DF = pd.read_csv("players_data.csv")
+#
+# page config
+st.set_page_config(
+    page_title="YELLOW & RED Cards • FPL Infographics", page_icon=":soccer:",layout="wide"
+)
+LOGO = "logo.png"
+st.logo(
+    LOGO,
+    icon_image=LOGO,
+    )
 
 # sidebar
 with st.sidebar:

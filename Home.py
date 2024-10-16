@@ -38,51 +38,44 @@ st.title(":soccer: :green[FPL] *Infographics*")
 st.markdown(
     """**Welcome to FPL Infographics - Your Ultimate Fantasy Premier League analysis graphs!**
 
-FPL Infographics will help you make wise decisions by making use of the analysed stats represented as various graphs
+FPL Infographics will help you make wise decisions by making use of the analysed stats represented as various graphs and tables
 """
 )
 
 # latest gameweek
 st.markdown(
-    "##### Latest data from Gameweek :blue["
+    "#### Latest data from Gameweek :blue["
     + str(CURR_GW)
     + """] 
-Use our latest data, stats, and models to prepare your team for success in :blue Gameweek """
+###### Use our latest data, stats, and models to prepare your team for success in :blue Gameweek """
     + str(CURR_GW + 1)
     + "."
+)
+st.markdown(
+    "#### Available Graphs and Analysis"
 )
 
 # development updates
 st.markdown(
-"""##### Which graphs/stats are provided?
-    
-    * Top Players by each position based on:
-        * Total points, 
-        * xGI
+"""
+    * Top Players by each position based on :bar_chart:
+        * Total points, xGI, form, Points per Million, Pointer per game
         * GI vs xGI quadrant analysis
-        * Form 
-        * Points per Million
-        * Pointer per game 
-        * next GW expected points
+
+    * Weekly player (top) stats for each position. :chart_with_upwards_trend:
+        * points, xG, xGI, BPS, ICT, Minutes
+
+    * Team stats :soccer:
+        * Form (last 5 match data - goals scored, cleansheets, points )
+        * FDR (Next 3 ,5 and season averages)
     
-    * Weekly player (top) stats for each position. 
-        * points
-        * xG 
-        * xGI, 
-        * BPS, 
-        * ICT 
-        * Minutes
+    * Set piece info :goal_net:
+        * Penalties Order, Direct free kicks, Corners and indirect free kicks
 
-    * Set piece info
-        * Penalties Order
-        * Direct free kicks
-        * Corners and indirect free kicks
+    * discipline :large_yellow_square: :large_red_square:
+        * Yellow cards, Red cards
 
-    * discipline
-        * Yellow cards
-        * Red cards
-
-    * Injuries/Doubts
-        * Doubtful players and News
-    """
+    * Latest Injury News :hospital:
+        * Doubtful players and News 
+"""
 )

@@ -9,6 +9,12 @@ CURR_GW = st.session_state.CURR_GW
 st.set_page_config(
     page_title="Set piece takers • FPL Infographics", page_icon=":goal_net:",layout="wide"
 )
+LOGO = "logo.png"
+st.logo(
+    LOGO,
+    icon_image=LOGO,
+    )
+
 # sidebar
 with st.sidebar:
     st.markdown(""":soccer: :green[FPL] *Infographics*""")
