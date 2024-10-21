@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 #
-
-CURR_GW = st.session_state.CURR_GW
 #
 FWD_DF = pd.read_csv("FWD_data.csv")
 FWD_DF_history  = pd.read_csv("FWD_history.csv")
@@ -33,8 +31,10 @@ FWD_DF_TP = FWD_DF.sort_values('total_points',ascending=False).head(15)
 FWD_DF_FORM = FWD_DF.sort_values('form',ascending=False).head(15)
 FWD_DF_PPM = FWD_DF.sort_values('money_value',ascending=False).head(15)
 FWD_DF_PPG = FWD_DF.sort_values('points_per_game',ascending=False).head(15)
+FWD_DF_SHOTS = FWD_DF.sort_values('shots',ascending=False).head(15)
+FWD_DF_KP = FWD_DF.sort_values('key_passes',ascending=False).head(15)
 # Top Players tabs
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Performance","Total Points", "xGI","Form","Points per Million","Points per Game"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(["Performance","Total Points", "xGI","Form","Shots","Key passes","Points per Million","Points per Game"])
 with tab1:
     fig_FWD_DF_perf = px.scatter(FWD_DF_XGI, x='goal_involvements', y='expected_goal_involvements',text='web_name')
     x_mean = FWD_DF_XGI['goal_involvements'].mean()
@@ -52,20 +52,25 @@ with tab4:
     fig_FWD_DF_FORM = px.bar(FWD_DF_XGI, x='web_name', y='form',color='form')
     st.plotly_chart(fig_FWD_DF_FORM, theme="streamlit", use_container_width=False)
 with tab5:
+    fig_FWD_DF_SHOTS = px.bar(FWD_DF_SHOTS, x='web_name', y='shots',color='shots')
+    st.plotly_chart(fig_FWD_DF_SHOTS, theme="streamlit", use_container_width=False)
+with tab6:
+    fig_FWD_DF_KP = px.bar(FWD_DF_KP, x='web_name', y='key_passes',color='key_passes')
+    st.plotly_chart(fig_FWD_DF_KP, theme="streamlit", use_container_width=False)
+with tab7:
     fig_FWD_DF_VALUE = px.bar(FWD_DF_PPM, x='web_name', y='money_value',color='money_value')
     st.plotly_chart(fig_FWD_DF_VALUE, theme="streamlit", use_container_width=False)
-with tab6:
+with tab8:
     fig_FWD_DF_PPG = px.bar(FWD_DF_PPG, x='web_name', y='points_per_game',color='points_per_game')
     st.plotly_chart(fig_FWD_DF_PPG, theme="streamlit", use_container_width=False)
 
 ############
 st.markdown(
-    "##### Weekly stats for Top-20 points getters"
+    "##### Weekly history for Top-20 points getters"
 )
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["Points","xGI","ICT","BPS","Minutes"])
 with tab1:
     pivot_data = FWD_DF_history.pivot_table(index='name', columns='round', values='total_points', aggfunc='sum')
-    print(pivot_data)
     fwd_h_tp = px.imshow(pivot_data, text_auto=True, aspect="auto",color_continuous_scale='Blackbody_r')
     fwd_h_tp.update_layout(autosize=False,width=1500,height=800)
     st.plotly_chart(fwd_h_tp, theme="streamlit", use_container_width=False)

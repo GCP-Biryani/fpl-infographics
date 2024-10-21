@@ -4,3 +4,5 @@ tabulate
 plotly
 streamlit
 streamlit_extras
+soccerdata
+setuptools

@@ -33,8 +33,11 @@ FWD_DF_TP = DEF_DF.sort_values('total_points',ascending=False).head(25)
 FWD_DF_FORM = DEF_DF.sort_values('form',ascending=False).head(25)
 FWD_DF_PPM = DEF_DF.sort_values('money_value',ascending=False).head(25)
 FWD_DF_PPG = DEF_DF.sort_values('points_per_game',ascending=False).head(25)
+FWD_DF_SHOTS = DEF_DF.sort_values('shots',ascending=False).head(25)
+FWD_DF_KP = DEF_DF.sort_values('key_passes',ascending=False).head(25)
 # Top Players tabs
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Attack Performance","Total Points", "xGI","Form","Points per Million","Points per Game"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(["Performance","Total Points", "xGI","Form","Shots","Key passes","Points per Million","Points per Game"])
+
 with tab1:
     fig_FWD_DF_perf = px.scatter(FWD_DF_XGI, x='goal_involvements', y='expected_goal_involvements',text='web_name')
     x_mean = FWD_DF_XGI['goal_involvements'].mean()
@@ -53,9 +56,15 @@ with tab4:
     fig_FWD_DF_FORM = px.bar(FWD_DF_XGI, x='web_name', y='form',color='form')
     st.plotly_chart(fig_FWD_DF_FORM, theme="streamlit", use_container_width=False)
 with tab5:
+    fig_FWD_DF_SHOTS = px.bar(FWD_DF_SHOTS, x='web_name', y='shots',color='shots')
+    st.plotly_chart(fig_FWD_DF_SHOTS, theme="streamlit", use_container_width=False)
+with tab6:
+    fig_FWD_DF_KP = px.bar(FWD_DF_KP, x='web_name', y='key_passes',color='key_passes')
+    st.plotly_chart(fig_FWD_DF_KP, theme="streamlit", use_container_width=False)
+with tab7:
     fig_FWD_DF_VALUE = px.bar(FWD_DF_PPM, x='web_name', y='money_value',color='money_value')
     st.plotly_chart(fig_FWD_DF_VALUE, theme="streamlit", use_container_width=False)
-with tab6:
+with tab8:
     fig_FWD_DF_PPG = px.bar(FWD_DF_PPG, x='web_name', y='points_per_game',color='points_per_game')
     st.plotly_chart(fig_FWD_DF_PPG, theme="streamlit", use_container_width=False)
 
