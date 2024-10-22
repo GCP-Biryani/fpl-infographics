@@ -23,10 +23,6 @@ with st.sidebar:
 
 ############
 st.markdown(
-    "##### Team form and FDR"
+    "##### Team FDR Analysis"
 )
-tab1, tab2 = st.tabs(["Team Form","Fixture Difficulty"])
-with tab1:
-    st.dataframe(data=TEAM_FORM_DF,hide_index=True,use_container_width=False,width=1200, height=800)
-with tab2:
-    st.dataframe(data=TEAM_FDR_DF,hide_index=True,use_container_width=False,width=1200, height=800)
+st.dataframe(data=TEAM_FDR_DF,hide_index=True,use_container_width=False,width=1200, height=800)
