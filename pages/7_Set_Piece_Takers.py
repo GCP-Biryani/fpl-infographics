@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 #
-
-CURR_GW = st.session_state.CURR_GW
 #
 # page config
 st.set_page_config(
@@ -19,10 +17,7 @@ st.logo(
 with st.sidebar:
     st.markdown(""":soccer: :green[FPL] *Infographics*""")
     st.caption(
-        """Latest gameweek data: :blue["""
-        + str(CURR_GW)
-        + """]  
-                [thecloudtechnologist](https://github.com/thecloudtechnologist)"""
+        """[GCP Biryani](https://github.com/GCP-Biryani)"""
     )
 
 ############

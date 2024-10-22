@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 #
-
-CURR_GW = st.session_state.CURR_GW
 #
 GKP_DF = pd.read_csv("GKP_data.csv")
 GKP_DF_history = pd.read_csv("GKP_history.csv")
@@ -21,7 +19,7 @@ st.logo(
 with st.sidebar:
     st.markdown(""":soccer: :green[FPL] *Infographics*""")
     st.caption(
-        """[thecloudtechnologist](https://github.com/thecloudtechnologist)"""
+        """[GCP Biryani](https://github.com/GCP-Biryani)"""
     )
 
 ############

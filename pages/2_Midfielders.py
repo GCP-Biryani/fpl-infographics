@@ -21,7 +21,7 @@ st.logo(
 with st.sidebar:
     st.markdown(""":soccer: :green[FPL] *Infographics*""")
     st.caption(
-        """[thecloudtechnologist](https://github.com/thecloudtechnologist)"""
+        """[GCP Biryani](https://github.com/GCP-Biryani)"""
     )
 
 ############
