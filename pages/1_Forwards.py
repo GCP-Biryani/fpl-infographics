@@ -74,7 +74,7 @@ with tab1:
     names = []
     price = []
     for points,name,cost in zip(FWD_DF['total_points'], FWD_DF['web_name'], FWD_DF['now_cost']):  
-        if cost <=6.5 and cost >5:
+        if cost <=7 and cost >5:
             c.append(points)
             names.append(name)  
             price.append(cost)

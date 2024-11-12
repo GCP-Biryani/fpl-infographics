@@ -2,7 +2,7 @@
 FPL Info graphics based on Official FPL API Data
 
 # Streamlit 
-[fpl-analysis.streamlit.app](fpl-analysis.streamlit.app)
+[https://fpl-infographics.streamlit.app](https://fpl-infographics.streamlit.app)
 
 ## Data status
 Site data gets updated daily at 04:00 GMT
