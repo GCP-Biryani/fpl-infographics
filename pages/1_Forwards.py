@@ -66,6 +66,33 @@ with tab8:
 
 ############
 st.markdown(
+    "##### Budget & Cheap forwards"
+)
+tab1, tab2 = st.tabs(["Budget forwards","Enablers"])
+with tab1:
+    c = []
+    names = []
+    price = []
+    for points,name,cost in zip(FWD_DF['total_points'], FWD_DF['web_name'], FWD_DF['now_cost']):  
+        if cost <=6.5 and cost >5:
+            c.append(points)
+            names.append(name)  
+            price.append(cost)
+    fig_budget = px.pie(FWD_DF, names=names, values=c, title='Budget Forwards')
+    st.plotly_chart(fig_budget, theme="streamlit", use_container_width=False)
+with tab2:
+    c = []
+    names = []
+    price = []
+    for points,name,cost in zip(FWD_DF['total_points'], FWD_DF['web_name'], FWD_DF['now_cost']):  
+        if cost <=5:
+            c.append(points)
+            names.append(name)  
+            price.append(cost)
+    fig_cheap = px.pie(FWD_DF, names=names, values=c, title='Enablers')
+    st.plotly_chart(fig_cheap, theme="streamlit", use_container_width=False)
+############
+st.markdown(
     "##### Weekly history for Top-20 points getters"
 )
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["Points","xGI","ICT","BPS","Minutes"])
