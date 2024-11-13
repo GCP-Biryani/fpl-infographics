@@ -37,7 +37,7 @@ with tab2:
     html_text = requests.get(url, headers=header).text
     soup = BeautifulSoup(html_text, 'lxml')
     table = soup.find_all('table')[0]
-
+    df = pd.read_html(str(table))[0]
     headers = []
     rows = []
     for i, row in enumerate(table.find_all('tr')):
@@ -51,13 +51,15 @@ with tab2:
         headers=["State", "Predicted Rises", "Predicted Falls"], 
         tablefmt="rounded_grid"
     )
-    st.text(table)
+    # st.dataframe(df,hide_index=True,width=1400)
+    st.table(df)
 with tab1:
     url = 'https://www.livefpl.net/price_changes'          # Price Changes
     header = ({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'})
     html_text = requests.get(url, headers=header).text
     soup = BeautifulSoup(html_text, 'lxml')
     table = soup.find_all('table')[0]
+    df = pd.read_html(str(table))[0]
 
     headers = []
     rows = []
@@ -67,12 +69,12 @@ with tab1:
         else:
             rows.append([el.text.strip() for el in row.find_all('td')])
 
-    table = tabulate(
+    table1 = tabulate(
         rows, 
         headers=["Player", "Team", "Old price", "New Price"], 
         tablefmt="rounded_grid"
     )
-    st.text(table)
+    st.dataframe(df,hide_index=True,width=1400)
 with tab3:
     D_DF = pd.read_csv("players_raw.csv")
     DOUBT_DF = D_DF[D_DF['status'] == 'd']
