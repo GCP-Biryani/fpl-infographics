@@ -5,7 +5,6 @@ import numpy as np
 from functions import *
 import soccerdata as sd
 pd.options.mode.chained_assignment = None
-
 # %%
 players_epl_unused_columns = ['chance_of_playing_next_round','chance_of_playing_this_round','code','cost_change_event','cost_change_event_fall','cost_change_start','cost_change_start_fall','in_dreamteam','special','squad_number','transfers_in','transfers_in_event','transfers_out','transfers_out_event','region','influence_rank_type','creativity_rank_type','threat_rank_type','ict_index_rank_type','corners_and_indirect_freekicks_text','direct_freekicks_text','penalties_text','now_cost_rank','now_cost_rank_type','form_rank','form_rank_type','points_per_game_rank','points_per_game_rank_type','selected_rank','selected_rank_type','dreamteam_count','first_name','second_name']
 players_understat_unused_columns = ['team_id', 'position','matches','minutes','goals','assists','yellow_cards','red_cards']
@@ -212,47 +211,17 @@ FWD_DF_history.to_csv('FWD_history.csv',index=False)
 
 # %%
 ##########################
-# TEAM xG & xAG
+# FBref team data
 ##########################
 fbref = sd.FBref(leagues="ENG-Premier League", seasons=2024)
-DF_ARS = fbref.read_team_match_stats(stat_type="schedule", team="Arsenal")
-DF_ARS.to_csv('DF_ARS.csv')
-DF_AVL = fbref.read_team_match_stats(stat_type="schedule", team="Aston Villa")
-DF_AVL.to_csv('DF_AVL.csv')
-DF_BOU = fbref.read_team_match_stats(stat_type="schedule", team="Bournemouth")
-DF_BOU.to_csv('DF_BOU.csv')
-DF_BRE = fbref.read_team_match_stats(stat_type="schedule", team="Brentford")
-DF_BRE.to_csv('DF_BRE.csv')
-DF_BRI = fbref.read_team_match_stats(stat_type="schedule", team="Brighton")
-DF_BRI.to_csv('DF_BRI.csv')
-DF_CHE = fbref.read_team_match_stats(stat_type="schedule", team="Chelsea")
-DF_CHE.to_csv('DF_CHE.csv')
-DF_CRY = fbref.read_team_match_stats(stat_type="schedule", team="Crystal Palace")
-DF_CRY.to_csv('DF_CRY.csv')
-DF_EVE = fbref.read_team_match_stats(stat_type="schedule", team="Everton")
-DF_EVE.to_csv('DF_EVE.csv')
-DF_FUL = fbref.read_team_match_stats(stat_type="schedule", team="Fulham")
-DF_FUL.to_csv('DF_FUL.csv')
-DF_IPS = fbref.read_team_match_stats(stat_type="schedule", team="Ipswich Town")
-DF_IPS.to_csv('DF_IPS.csv')
-DF_LEI = fbref.read_team_match_stats(stat_type="schedule", team="Leicester City")
-DF_LEI.to_csv('DF_LEI.csv')
-DF_LIV = fbref.read_team_match_stats(stat_type="schedule", team="Liverpool")
-DF_LIV.to_csv('DF_LIV.csv')
-DF_MNC = fbref.read_team_match_stats(stat_type="schedule", team="Manchester City")
-DF_MNC.to_csv('DF_MNC.csv')
-DF_MNU = fbref.read_team_match_stats(stat_type="schedule", team="Manchester Utd")
-DF_MNU.to_csv('DF_MNU.csv')
-DF_NEW = fbref.read_team_match_stats(stat_type="schedule", team="Newcastle Utd")
-DF_NEW.to_csv('DF_NEW.csv')
+teams = ["Arsenal","Aston Villa","Bournemouth","Brentford","Brighton","Chelsea","Crystal Palace","Everton","Fulham","Ipswich Town","Leicester City","Liverpool","Manchester City","Manchester Utd","Newcastle Utd","Southampton","Tottenham","West Ham","Wolves"]
+for team in teams:
+    DF = fbref.read_team_match_stats(stat_type="schedule", team=team)
+    DF = DF[~DF["result"].isna()]
+    DF.to_csv("fbref-"+team+".csv")
+#
+#"Nott'ham Forest"
 DF_NFO = fbref.read_team_match_stats(stat_type="schedule", team="Nott'ham Forest")
-DF_NFO.to_csv('DF_NFO.csv')
-DF_SOU = fbref.read_team_match_stats(stat_type="schedule", team="Southampton")
-DF_SOU.to_csv('DF_SOU.csv')
-DF_TOT = fbref.read_team_match_stats(stat_type="schedule", team="Tottenham")
-DF_TOT.to_csv('DF_TOT.csv')
-DF_WHU = fbref.read_team_match_stats(stat_type="schedule", team="West Ham")
-DF_WHU.to_csv('DF_WHU.csv')
-DF_WOL = fbref.read_team_match_stats(stat_type="schedule", team="Wolves")
-DF_WOL.to_csv('DF_WOL.csv')
+DF_NFO = DF_NFO[~DF_NFO["result"].isna()]
+DF_NFO.to_csv('fbref-NFO.csv')
 # %%
