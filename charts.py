@@ -14,11 +14,11 @@ def xg_xga(df):
     return fig
 # Retun bar chart for team Attack
 def xg_goals(df):
-    fig = px.bar(df, x='opponent', y=['xG','GF'],barmode='group')
+    fig = px.bar(df, x='opponent', y=['xG','GF'],barmode='group',text_auto=True)
     return fig
 # Retun bar chart for team defense
 def xga_goalsa(df):
-    fig = px.bar(df, x='opponent', y=['xGA','GA'],barmode='group')
+    fig = px.bar(df, x='opponent', y=['xGA','GA'],barmode='group',text_auto=True)
     return fig
 # Retun 3 tabs with team stat charts
 def chart_tabs(df):

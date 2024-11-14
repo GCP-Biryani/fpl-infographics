@@ -13,9 +13,8 @@ st.logo(
 # sidebar
 with st.sidebar:
     st.markdown(""":soccer: :green[FPL] *Infographics*""")
-    st.caption(
-        """[GCP Biryani](https://github.com/GCP-Biryani)"""
-    )
+    st.link_button("Personalised watchlist", "https://fplmate.streamlit.app/")
+    st.link_button("Mini-League Analyser", "https://fplmate.streamlit.app/")
 #
 # Player data frames
 FWD_DF = pd.read_csv("FWD_data.csv")
