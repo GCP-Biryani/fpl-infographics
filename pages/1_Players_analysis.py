@@ -36,14 +36,17 @@ with tabD:
     player_stat_tabs(DEF_DF,'def')
 # Goal keeper
 with tabG:
-    FWD_DF_XGC = GKP_DF.sort_values('expected_goals_conceded',ascending=False).head(20)
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Defense Performance","Total Points","Form","Points per Million","Points per Game"])
+    # FWD_DF_XGC = GKP_DF.sort_values('expected_goals_conceded',ascending=False).head(20)
+    FWD_DF_XGC = GKP_DF.sort_values('expected_goals_conceded',ascending=False)
+    FWD_DF_XGC = FWD_DF_XGC[FWD_DF_XGC['total_points'] > 0]
+    tab1, tab2, tab3, tab4, tab5,tab6 = st.tabs(["Defense Performance","Total Points","Form","Points per Million","Points per Game","saves"])
     with tab1:
         fig_FWD_DF_perf = px.scatter(FWD_DF_XGC, x='goals_conceded', y='expected_goals_conceded',text='web_name')
         x_mean = FWD_DF_XGC['goals_conceded'].mean()
         y_mean = FWD_DF_XGC['expected_goals_conceded'].mean()
         fig_FWD_DF_perf.add_hline(y=y_mean,line_dash="dot")
         fig_FWD_DF_perf.add_vline(x=x_mean,line_dash="dot")
+        fig_FWD_DF_perf.update_layout(autosize=False,width=1400,height=650)
         st.plotly_chart(fig_FWD_DF_perf, theme="streamlit", use_container_width=False)
         st.caption('lower-left quadrant better choice')
     with tab2:
@@ -61,4 +64,8 @@ with tabG:
     with tab5:
         st.caption('Interactive - you can select the price bracket using mouse pointer ')
         fig = get_scatter(GKP_DF,'points_per_game')
+        st.plotly_chart(fig,theme=None)
+    with tab6:
+        st.caption('Interactive - you can select the price bracket using mouse pointer ')
+        fig = get_scatter(GKP_DF,'saves')
         st.plotly_chart(fig,theme=None)

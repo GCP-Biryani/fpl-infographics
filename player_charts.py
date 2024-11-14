@@ -12,7 +12,7 @@ def player_stat_perf(df):
     y_mean = df['expected_goal_involvements'].mean()
     fig.add_hline(y=y_mean,line_dash="dot")
     fig.add_vline(x=x_mean,line_dash="dot")
-    fig.update_layout(autosize=False,width=1400,height=600)
+    fig.update_layout(autosize=False,width=1400,height=750)
     return fig
 #Creates tabs for entry_type
 # tabF,tabM,tabD,tabZ = st.tabs(["Forwards","Midfielders","Defenders","Goalie"])
