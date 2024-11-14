@@ -13,28 +13,22 @@ PLAYERS_DF = PLAYERS_DF.rename(columns={'web_name':'Name'})
 PLAYERS_DF['goal_involvements'] = PLAYERS_DF['goals_scored'] + PLAYERS_DF['assists']
 PLAYERS_DF['money_value'] = PLAYERS_DF['total_points'] / PLAYERS_DF['now_cost']
 #
-st.session_state.CURR_GW = CURR_GW
-
 # page config
 st.set_page_config(
-    page_title="Home • FPL Infographics", page_icon=":soccer:",layout="wide"
+    page_title="Welcome to FPL Infographics", page_icon=":soccer:",layout="wide"
 )
 LOGO = "logo.png"
 st.logo(
     LOGO,
     icon_image=LOGO,
     )
-
 # sidebar
 with st.sidebar:
-    
-    st.title(":soccer: FPL Infographics")
+    st.markdown(""":soccer: :green[FPL] *Infographics*""")
     st.caption(
-        """Latest gameweek data: :blue["""
-        + str(CURR_GW)
-        + """]  
-                [GCP Biryani](https://github.com/GCP-Biryani)"""
+        """[GCP Biryani](https://github.com/GCP-Biryani)"""
     )
+#
 
 
 # landing
@@ -48,7 +42,7 @@ FPL Infographics will help you make wise decisions by making use of the analysed
 
 # latest gameweek
 st.markdown(
-    "#### Latest data from Gameweek :blue["
+    "##### Latest data update - Gameweek :blue["
     + str(CURR_GW)
     + """] 
  :blue[Use our latest data, stats, and models to prepare your team for success in Gameweek """
@@ -68,7 +62,7 @@ def GET_DF(STAT):
 def DATA_EDITOR(DF):
     return st.data_editor(DF,column_config={"IMAGE": st.column_config.ImageColumn(label="")},hide_index=True,disabled=True)
 ############
-st.header("Season Stars",divider=True)
+st.header("Season Stars :star:",divider=True)
 #
 col1, col3,col4,col5,col6 = st.columns(5)
 with col1:

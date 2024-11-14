@@ -11,7 +11,7 @@ PLAYERS_DF = pd.read_csv("players_data.csv")
 #
 # page config
 st.set_page_config(
-    page_title="Latest price changes & Injury News • FPL Infographics", page_icon=":soccer:",layout="wide"
+    page_title="Latest price changes • FPL Infographics", page_icon=":soccer:",layout="wide"
 )
 LOGO = "logo.png"
 st.logo(
@@ -28,7 +28,7 @@ with st.sidebar:
 
 ############
 st.markdown(
-    "##### Price changes, price predictions & Inury News"
+    "##### :money_mouth_face: Price changes & price predictions"
 )
 tab1, tab2, tab3 = st.tabs(["Today price changes","Price change predictions","Injury News"])
 with tab2:

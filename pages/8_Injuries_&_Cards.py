@@ -6,7 +6,7 @@ PLAYERS_DF = pd.read_csv("players_data.csv")
 #
 # page config
 st.set_page_config(
-    page_title="YELLOW & RED Cards • FPL Infographics", page_icon=":soccer:",layout="wide"
+    page_title="Injury news & Cards • FPL Infographics", page_icon=":soccer:",layout="wide"
 )
 LOGO = "logo.png"
 st.logo(
@@ -22,16 +22,13 @@ with st.sidebar:
     )
 
 ############
-st.markdown(
-    "##### Cards"
-)
 YELLOW_DF = PLAYERS_DF.sort_values('yellow_cards',ascending=False).head(50)
 YELLOW_DF.rename(columns={'web_name': 'Name'}, inplace=True)
 RED_DF = PLAYERS_DF[PLAYERS_DF['red_cards'].ge(0)]
 RED_DF = RED_DF.sort_values('red_cards',ascending=False).head(25)
 RED_DF.rename(columns={'web_name': 'Name'}, inplace=True)
 
-tab1, tab2,tab3= st.tabs(["Injuries","YELLOW Cards","RED Cards"])
+tab1, tab2,tab3= st.tabs(["Injuries :ambulance:","YELLOW Cards:large_yellow_square:","RED Cards:large_red_square:"])
 with tab2:
     fig_YC = px.bar(YELLOW_DF, x='Name', y='yellow_cards',color='yellow_cards',color_continuous_scale='Blackbody_r')
     st.plotly_chart(fig_YC, theme="streamlit", use_container_width=False)

@@ -12,7 +12,7 @@ ATTACK_DF = pd.concat([FWD_DF,MID_DF,DEF_DF])
 #
 # page config
 st.set_page_config(
-    page_title="Player statistics • FPL Infographics", page_icon=":soccer:",layout="wide"
+    page_title="ALL Player statistics • FPL Infographics", page_icon=":soccer:",layout="wide"
 )
 LOGO = "logo.png"
 st.logo(

@@ -2,11 +2,12 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import soccerdata as sd
+from charts import *
 #
 #
 # page config
 st.set_page_config(
-    page_title="Team xG vs xAG", page_icon=":soccer:",layout="wide"
+    page_title="Team stats analysis", page_icon=":soccer:",layout="wide"
 )
 LOGO = "logo.png"
 st.logo(
@@ -21,8 +22,9 @@ with st.sidebar:
     )
 #
 st.markdown(
-    "##### Team stats Analysis - Attack, Defense, Expected vs Actual"
+    "#### Team stats Analysis :chart_with_upwards_trend: - Attack, Defense, Expected vs Actual"
 )
+# Team dataframes
 fbref = sd.FBref(leagues="ENG-Premier League", seasons=2024)
 DF_ARS = pd.read_csv('fbref-Arsenal.csv')
 DF_AVL = pd.read_csv('fbref-Aston Villa.csv')
@@ -44,40 +46,8 @@ DF_SOU = pd.read_csv('fbref-Southampton.csv')
 DF_TOT = pd.read_csv('fbref-Tottenham.csv')
 DF_WHU = pd.read_csv('fbref-West Ham.csv')
 DF_WOL = pd.read_csv('fbref-Wolves.csv')
-#
-def xg_xga(df):
-    fig = px.area(df, x='opponent', y=['xG','xGA'])
-    fig.update_traces(stackgroup = None,fill = 'tozeroy')
-    return fig
-def xg_goals(df):
-    fig = px.bar(df, x='opponent', y=['xG','GF'],barmode='group')
-    return fig
-def xga_goalsa(df):
-    fig = px.bar(df, x='opponent', y=['xGA','GA'],barmode='group')
-    return fig
-def chart_tabs(df):
-    taba,tabb,tabc = st.tabs(["Overview","Attack","Defense"])
-    with taba:
-        fig = xg_xga(df)
-        st.plotly_chart(fig,theme=None)
-        st.markdown('''
-            * xG (BLUE Line)= Expected Goals
-            * XGA (RED Line) = Expected Goals Against'''
-        )
-    with tabb:
-        fig = xg_goals(df)
-        st.plotly_chart(fig,theme=None)
-        st.markdown('''
-            * xG (BLUE Bar)= Expected Goals
-            * GF (RED Bar) = Actual Goals scored'''
-        )
-    with tabc:
-        fig = xga_goalsa(df)
-        st.plotly_chart(fig,theme=None)
-        st.markdown('''
-            * xGA (BLUE Bar)= expected goals conceded
-            * GA (RED Bar) = Actual goals conceded'''
-        )
+
+# team tabs
 tab1,tab2,tab3,tab4,tab5,tab6,tab7,tab8,tab9,tab10,tab11,tab12,tab13,tab14,tab15,tab16,tab17,tab18,tab19,tab20 = st.tabs(["ARS","AVL","BOU", "BRE","BRI","CHE","CRY","EVE","FUL","IPS","LEI","LIV","MNC","MNU","NEW","NFO","SOU","TOT","WHU","WOL"])
 with tab1:
     chart_tabs(DF_ARS)
@@ -119,17 +89,3 @@ with tab19:
     chart_tabs(DF_WHU)
 with tab20:
     chart_tabs(DF_WOL)
-#######################
-## FORM & FDR
-#######################
-st.markdown(
-    "##### Team Form & FDR Analysis"
-)
-tabx,taby = st.tabs(["From analysys", "FDR Analysis"])
-with tabx:
-    TEAM_FORM_DF = pd.read_csv('team_form.csv', index_col=False)
-    st.dataframe(data=TEAM_FORM_DF,hide_index=True,use_container_width=False,width=1200, height=800,
-             column_config={  })
-with taby:
-    TEAM_FDR_DF = pd.read_csv('team_fdr.csv', index_col=False)
-    st.dataframe(data=TEAM_FDR_DF,hide_index=True,use_container_width=False,width=1200, height=800)
