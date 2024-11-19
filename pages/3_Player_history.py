@@ -20,10 +20,11 @@ st.logo(
     )
 # sidebar
 with st.sidebar:
-    st.markdown(""":soccer: :green[FPL] *Infographics*""")
-    st.caption(
-        """[GCP Biryani](https://github.com/GCP-Biryani)"""
-    )
+    st.title(""":soccer: *Player GW Histories*""")
+    st.caption("--------------------")
+    st.link_button("Personalised transfers list", "https://fplmate.streamlit.app", icon=":material/eye_tracking:")
+    st.caption("Get your team performance, mini-league performance and Watch list picks based on expected goal involvements, points per game, Form, next gameweek expected points and Infuence+Creativity+Threat rank ")
+   
 #
 st.markdown(
     "#### Player gameweek history :page_with_curl:"
