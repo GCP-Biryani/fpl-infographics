@@ -29,18 +29,21 @@ st.markdown(
 tabx,taby = st.tabs(["From analysys", "FDR Analysis"])
 with tabx:
     TEAM_FORM_DF = pd.read_csv('team_form.csv', index_col=False)
-    option = st.selectbox(
-    "Select the metric",
-    ("Points Per Game(Last5)", "Goals Per Game(Last5)", "Points Per Game(Season)",'Clean Sheets', 'GAMES SCORED IN'),
-    )
-    fig = px.bar(TEAM_FORM_DF,x=option,y='Team',color=option,color_continuous_scale='plasma_r',text=option,orientation='h')
+    options = ["Points Per Game(Last5)", "Goals Per Game(Last5)", "Points Per Game(Season)","Clean Sheets", "GAMES SCORED IN"]
+    selection = st.radio("Select an indicator", options,horizontal=True)
+    fig = px.bar(TEAM_FORM_DF,x=selection,y='Team',color=selection,color_continuous_scale='plasma_r',text=selection,orientation='h')
     fig.update_layout(autosize=False,width=1500,height=700)
     st.plotly_chart(fig, theme=None)
 with taby:
     TEAM_FDR_DF = pd.read_csv('team_fdr.csv', index_col=False)
-    fdr_opt = st.selectbox(
-    "Select the metric",
-    ('Avg FDR(Next 3)','Avg FDR5(Next 5)','Avg FDR(Next 10)','Avg FDR(Remaining Season)')
+    fdr_opt = st.radio(
+    "Select a period",
+    options=[
+        "Avg FDR(Next 3)",
+        "Avg FDR5(Next 5)",
+        "Avg FDR(Next 10)",
+        "Avg FDR(Remaining Season)",
+    ],horizontal=True
     )
     fig = px.bar(TEAM_FDR_DF,x=fdr_opt,y='Team',color=fdr_opt,color_continuous_scale='plasma_r',text=fdr_opt,orientation='h')
     fig.update_layout(autosize=False,width=1500,height=700)
