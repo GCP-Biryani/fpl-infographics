@@ -129,11 +129,10 @@ def fixtures_by_team(fixtures, team, gameweek):
 ##########################
 # Add FPL data
 ##########################
-# DROP unavailable & Injured
-players_df_epl.drop(players_df_epl[players_df_epl['status'] == 'u'].index, inplace=True)
-players_df_epl.drop(players_df_epl[players_df_epl['status'] == 'i'].index, inplace=True)
-# Drop players with 0 minutes
-# players_df_epl = players_df_epl.drop(players_df_epl[players_df_epl['minutes'] == 0].index)
+# DROP unavailable & Injured & 0 min players
+# players_df_epl.drop(players_df_epl[players_df_epl['status'] == 'u'].index, inplace=True)
+# players_df_epl.drop(players_df_epl[players_df_epl['status'] == 'i'].index, inplace=True)
+players_df_epl.drop(players_df_epl[players_df_epl['minutes'] == 0].index, inplace=True)
 # SAVE
 players_df_epl.to_csv('players_raw.csv')
 # Drop unused columns

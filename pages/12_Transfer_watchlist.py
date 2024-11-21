@@ -18,6 +18,8 @@ with st.sidebar:
     st.caption("Get your team performance, mini-league performance and Watch list picks based on expected goal involvements, points per game (PPG),points per millions (PPM) Form, next gameweek expected points and Infuence+Creativity+Threat rank ")
 #
 players_df = pd.read_csv('players_data.csv')
+players_df.drop(players_df[players_df['status'] == 'u'].index, inplace=True)
+players_df.drop(players_df[players_df['status'] == 'i'].index, inplace=True)
 events_df = pd.read_csv('events.csv')
 CURR_GW = events_df.loc[events_df['is_current'] == True]['id'].iloc[-1]
 #

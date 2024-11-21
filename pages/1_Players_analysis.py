@@ -38,11 +38,13 @@ with tabG:
     FWD_DF_XGC = FWD_DF_XGC[FWD_DF_XGC['total_points'] > 0]
     tab1, tab2, tab3, tab4, tab5,tab6 = st.tabs(["Defense Performance","Total Points","Form","Points per Million","Points per Game","saves"])
     with tab1:
+        price = st.slider("Select the max price",4.0,7.0,6.0,step=0.1,key='GKP')
+        FWD_DF_XGC = FWD_DF_XGC[FWD_DF_XGC['now_cost'] <= price]
         fig_FWD_DF_perf = px.scatter(FWD_DF_XGC, x='goals_conceded', y='expected_goals_conceded',text='web_name')
         x_mean = FWD_DF_XGC['goals_conceded'].mean()
         y_mean = FWD_DF_XGC['expected_goals_conceded'].mean()
-        fig_FWD_DF_perf.add_hline(y=y_mean,line_dash="dot")
-        fig_FWD_DF_perf.add_vline(x=x_mean,line_dash="dot")
+        fig_FWD_DF_perf.add_hline(y=y_mean,line_dash="dot",line_color='Blue')
+        fig_FWD_DF_perf.add_vline(x=x_mean,line_dash="dot",line_color='Blue')
         fig_FWD_DF_perf.update_layout(autosize=False,width=1400,height=650)
         st.plotly_chart(fig_FWD_DF_perf, theme="streamlit", use_container_width=False)
         st.caption('lower-left quadrant better choice')

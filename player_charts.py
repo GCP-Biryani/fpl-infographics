@@ -5,9 +5,11 @@ from charts import *
 #
 # create perf chart
 def player_stat_perf(df):
-    DF_XGI = df.sort_values('expected_goal_involvements',ascending=False)
-    DF_XGI = DF_XGI[DF_XGI['total_points'] > 0]
-    fig = px.scatter(DF_XGI, x='goal_involvements', y='expected_goal_involvements',text='web_name',size="total_points",color="total_points",color_continuous_scale='turbo')
+    price = st.slider("Select the max price",3.8,15.5,15.5,step=0.1,key=df.size)
+    df = df[df['now_cost'] <= price]
+    DF = df.sort_values('expected_goal_involvements',ascending=False)
+    DF = DF[DF['total_points'] > 0]
+    fig = px.scatter(DF, x='goal_involvements', y='expected_goal_involvements',text='web_name',size="total_points",color="total_points",color_continuous_scale='turbo')
     x_mean = df['goal_involvements'].mean()
     y_mean = df['expected_goal_involvements'].mean()
     fig.add_hline(y=y_mean,line_dash="dot",line_color='Blue')
