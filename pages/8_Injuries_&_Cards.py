@@ -17,10 +17,7 @@ st.logo(
 # sidebar
 with st.sidebar:
     st.title(""":soccer: *Injuries & Cards*""")
-    st.caption("--------------------")
-    st.link_button("Personalised transfers list", "https://fplmate.streamlit.app", icon=":material/eye_tracking:")
-    st.caption("Get your team performance, mini-league performance and Watch list picks based on expected goal involvements, points per game, Form, next gameweek expected points and Infuence+Creativity+Threat rank ")
-   
+    st.caption("Latest injury news & Yellow, red cards table")
 ############
 YELLOW_DF = PLAYERS_DF.sort_values('yellow_cards',ascending=False).head(50)
 YELLOW_DF.rename(columns={'web_name': 'Name'}, inplace=True)
@@ -42,4 +39,4 @@ with tab1:
     DOUBT_DF = DOUBT_DF[['web_name','news','news_added']].sort_values('news_added',ascending=False)
     DOUBT_DF.rename(columns={'web_name': 'Name','news_added':'Updated'}, inplace=True)
 
-    st.dataframe(data=DOUBT_DF,hide_index=True,use_container_width=False,width=800, height=1500)
+    st.dataframe(data=DOUBT_DF,hide_index=True,use_container_width=False,width=1000, height=1500)

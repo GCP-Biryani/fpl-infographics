@@ -20,7 +20,7 @@ st.logo(
 # sidebar
 with st.sidebar:
     st.title(""":soccer: *FPL Infographics*""")
-    st.caption("FPL (Fantasy Premier League) infographics can be incredibly helpful in making informed decisions by visualizing key stats and data in an easily digestible format. By transforming complex numbers and trends into graphs and tables, you can better understand player performances, team trends, and matchups.")
+    st.caption("FPL infographics can be incredibly helpful in making informed decisions by visualizing key stats and data in an easily digestible format. By transforming complex numbers and trends into graphs and tables, you can better understand player performances, team trends, and matchups.")
 
 
 # landing

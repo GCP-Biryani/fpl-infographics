@@ -16,10 +16,7 @@ st.logo(
 # sidebar
 with st.sidebar:
     st.title(""":soccer: *Set piece takers*""")
-    st.caption("--------------------")
-    st.link_button("Personalised transfers list", "https://fplmate.streamlit.app", icon=":material/eye_tracking:")
-    st.caption("Get your team performance, mini-league performance and Watch list picks based on expected goal involvements, points per game, Form, next gameweek expected points and Infuence+Creativity+Threat rank ")
-   
+    st.caption("Penalties, corners, free kicks - whos on them")
 
 ############
 st.markdown(

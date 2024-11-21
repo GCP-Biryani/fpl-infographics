@@ -19,10 +19,7 @@ st.logo(
 # sidebar
 with st.sidebar:
     st.title(""":soccer: *Mini-League Analyser*""")
-    st.caption("Your mini-league insights as graphs")
-    st.caption("--------------------")
-    st.link_button("Personalised transfers list", "https://fplmate.streamlit.app", icon=":material/eye_tracking:")
-    st.caption("Get your team performance, mini-league performance and Watch list picks based on expected goal involvements, points per game, Form, next gameweek expected points and Infuence+Creativity+Threat rank ")
+    st.caption("Mini-league analysis - player ownership, captain choice, league race, each team xGI, bench points, team value")
     
 ##############################
 # prettytable headers 

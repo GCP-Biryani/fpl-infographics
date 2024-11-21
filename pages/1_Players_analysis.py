@@ -13,10 +13,7 @@ st.logo(
 # sidebar
 with st.sidebar:
     st.title(""":soccer: *Player stats analysis*""")
-    st.caption("--------------------")
-    st.link_button("Personalised transfers list", "https://fplmate.streamlit.app", icon=":material/eye_tracking:")
-    st.caption("Get your team performance, mini-league performance and Watch list picks based on expected goal involvements, points per game, Form, next gameweek expected points and Infuence+Creativity+Threat rank ")
-   
+    st.caption("players performance, expected - goals, assists, involvements, shots, key passses, points per game, points per million and more..")
 # Player data frames
 FWD_DF = pd.read_csv("FWD_data.csv")
 MID_DF = pd.read_csv("MID_data.csv")

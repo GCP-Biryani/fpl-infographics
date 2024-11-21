@@ -22,10 +22,7 @@ st.logo(
 # sidebar
 with st.sidebar:
     st.title(""":soccer: *Price Changes & Predictions*""")
-    st.caption("--------------------")
-    st.link_button("Personalised transfers list", "https://fplmate.streamlit.app", icon=":material/eye_tracking:")
-    st.caption("Get your team performance, mini-league performance and Watch list picks based on expected goal involvements, points per game, Form, next gameweek expected points and Infuence+Creativity+Threat rank ")
-   
+    st.caption("Today price change and predicted price changes for the next few days")
 
 ############
 st.markdown(

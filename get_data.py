@@ -142,6 +142,9 @@ players_df_epl = players_df_epl.drop(columns = players_epl_unused_columns)
 players_df_epl['position'] = players_df_epl.element_type.map(player_types_df.set_index('id').singular_name)
 # Replace team ID with name
 players_df_epl['team'] = players_df_epl.team.map(teams_df.set_index('id').name)
+# Add photos
+players_df_epl['photo'] = 'https://resources.premierleague.com/premierleague/photos/players/250x250/p' + players_df_epl['photo'].astype(str)
+players_df_epl['photo'] = players_df_epl['photo'].str.replace('jpg','png')
 # Create new stats
 players_df_epl['element_type'] = players_df_epl['element_type'].replace([1,2,3,4],['GKP','DEF','MID','FWD'])
 players_df_epl['now_cost'] = players_df_epl['now_cost']/10
@@ -149,7 +152,7 @@ players_df_epl['goal_involvements'] = players_df_epl['goals_scored'] + players_d
 players_df_epl['money_value'] = players_df_epl['total_points'] / players_df_epl['now_cost']
 players_df_epl = players_df_epl.astype({"form": float, "total_points": int, "expected_goal_involvements": float,"money_value":float ,"goal_involvements": float})
 players_df_epl['performance'] = players_df_epl['goal_involvements'] - players_df_epl['expected_goal_involvements']
-#
+# Add fixture details
 fixtures_going_forward = fixtures_df.loc[fixtures_df['Gameweek'] > CURR_GW]
 #
 players_df_epl['next_match'] = players_df_epl['team'].apply(lambda x: list(fixtures_by_team(fixtures_df, x, CURR_GW+1)[['opponent', 'h_or_a']].iloc[-1]))
@@ -164,6 +167,7 @@ players_df_epl['next_5'] = players_df_epl['team'].apply(lambda x: list(fixtures_
 #
 players_df_epl = players_df_epl.astype({"next_3": str, "next_5": str, "next_3_avg_FDRs": float, "next_5_avg_FDRs": float})
 #
+
 # %%
 ##########################
 # FPL, UNDERSTAT, FBREF ID_MAP

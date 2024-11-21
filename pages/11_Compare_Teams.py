@@ -15,20 +15,21 @@ st.logo(
 # sidebar
 with st.sidebar:
     st.title(""":soccer: *Compare Teams*""")
-    st.caption("--------------------")
-    st.link_button("Personalised transfers list", "https://fplmate.streamlit.app", icon=":material/eye_tracking:")
-    st.caption("Get your team performance, mini-league performance and Watch list picks based on expected goal involvements, points per game, Form, next gameweek expected points and Infuence+Creativity+Threat rank ")
-    
+    st.caption("compare teams from mini-league and see common picks and differentials + points by each position")
 
-url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
-r = requests.get(url)
-json1 = r.json()
-players_df = pd.DataFrame(json1['elements'])
-events_df = pd.DataFrame(json1['events'])
+# url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
+# r = requests.get(url)
+# json1 = r.json()
+# players_df = pd.DataFrame(json1['elements'])
+# events_df = pd.DataFrame(json1['events'])
+# gwplayed = events_df.loc[events_df['is_current'] == True]['id'].iloc[-1]
+# keep_cols = ["id","web_name","event_points","element_type"]
+# players_df = players_df[keep_cols]
+# players_df['element_type'] = players_df['element_type'].replace([1,2,3,4],['GKP','DEF','MID','FWD'])
+
+players_df = pd.read_csv('players_data.csv')
+events_df = pd.read_csv('events.csv')
 gwplayed = events_df.loc[events_df['is_current'] == True]['id'].iloc[-1]
-keep_cols = ["id","web_name","event_points","element_type"]
-players_df = players_df[keep_cols]
-players_df['element_type'] = players_df['element_type'].replace([1,2,3,4],['GKP','DEF','MID','FWD'])
 #
 if 'league_id' not in st.session_state:
     st.header("Please complete mini-league analysis and come back here")
@@ -54,7 +55,8 @@ def get_name(pick):
     name = players_df.loc[players_df['id']== pick]['web_name'].iloc[-1]
     position = players_df.loc[players_df['id']== pick]['element_type'].iloc[-1]
     points = players_df.loc[players_df['id']== pick]['event_points'].iloc[-1]
-    return [name,position,points]
+    photo = players_df.loc[players_df['id']== pick]['photo'].iloc[-1]
+    return [name,photo,position,points]
 
 
 ####
@@ -77,50 +79,50 @@ def compare_teams(your_id,their_id,gw):
     with col1:
         
         pbp = points_by_position(your_list)
-        st.plotly_chart(pbp,theme=None,use_container_width=False)
+        st.plotly_chart(pbp,theme=None,use_container_width=False,key='your')
         common = list(set(your_list).intersection(opp_list))
         common_picks = []
         for i in common:
             new = get_name(i)
             common_picks.append(new)
-        df_common = pd.DataFrame(common_picks, columns=["Name","Position","GW points"]).sort_values(by=['Position'])
+        df_common = pd.DataFrame(common_picks, columns=["Name","photo","Position","GW points"]).sort_values(by=['Position'])
         st.header("Common Players")
-        st.dataframe(df_common,hide_index=True,use_container_width=False)
+        st.dataframe(df_common,hide_index=True,use_container_width=False,column_config={"photo": st.column_config.ImageColumn(label="Image",width="small")})
         st.header("Differentials")
         yours = set(your_list).difference(opp_list)
         your_picks = []
         for i in yours:
             new = get_name(i)
             your_picks.append(new)
-        df_yours = pd.DataFrame(your_picks, columns=["Name","Position","GW points"]).sort_values(by=['Position'])
-        st.dataframe(df_yours, hide_index=True,height=600,use_container_width=False)
+        df_yours = pd.DataFrame(your_picks, columns=["Name","photo","Position","GW points"]).sort_values(by=['Position'])
+        st.dataframe(df_yours, hide_index=True,height=600,width=450,use_container_width=False,column_config={"photo": st.column_config.ImageColumn(label="Image",width="small")})
 ####
     with col2:
         
         pbp = points_by_position(opp_list)
-        st.plotly_chart(pbp,theme=None,use_container_width=False)
+        st.plotly_chart(pbp,theme=None,use_container_width=False,key='opp')
         common = list(set(your_list).intersection(opp_list))
         common_picks = []
         for i in common:
             new = get_name(i)
             common_picks.append(new)
-        df_common = pd.DataFrame(common_picks, columns=["Name","Position","GW points"]).sort_values(by=['Position'])
+        df_common = pd.DataFrame(common_picks, columns=["Name","photo","Position","GW points"]).sort_values(by=['Position'])
         st.header("Common Players")
-        st.dataframe(df_common,hide_index=True,use_container_width=False)
+        st.dataframe(df_common,hide_index=True,use_container_width=False,column_config={"photo": st.column_config.ImageColumn(label="Image",width="small")})
         st.header("Differentials")
         theirs = set(opp_list).difference(your_list)
         their_picks = []
         for i in theirs:
             new = get_name(i)
             their_picks.append(new)
-        df_theirs = pd.DataFrame(their_picks, columns=["Name","Position","GW points"]).sort_values(by=['Position'])
-        st.dataframe(df_theirs,hide_index=True,height=600,use_container_width=False)
+        df_theirs = pd.DataFrame(their_picks, columns=["Name","photo","Position","GW points"]).sort_values(by=['Position'])
+        st.dataframe(df_theirs,hide_index=True,height=600,width=450,use_container_width=False,column_config={"photo": st.column_config.ImageColumn(label="Image",width="small")})
 def points_by_position(picks_list):
     team_picks = []
     for i in picks_list:
         new = get_name(i)
         team_picks.append(new)
-    df_team_picks = pd.DataFrame(team_picks, columns=["Name","Position","Points"]).groupby('Position',as_index=False).sum()
+    df_team_picks = pd.DataFrame(team_picks, columns=["Name","photo","Position","Points"]).groupby('Position',as_index=False).sum()
     fig_pos_scores = px.pie(df_team_picks,values='Points',names='Position',hover_data=['Name'],color='Position',hole=0.2)
     return fig_pos_scores
      

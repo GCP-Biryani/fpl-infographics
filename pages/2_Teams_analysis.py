@@ -17,10 +17,7 @@ st.logo(
 # sidebar
 with st.sidebar:
     st.title(""":soccer: *Team stats analysis*""")
-    st.caption("--------------------")
-    st.link_button("Personalised transfers list", "https://fplmate.streamlit.app", icon=":material/eye_tracking:")
-    st.caption("Get your team performance, mini-league performance and Watch list picks based on expected goal involvements, points per game, Form, next gameweek expected points and Infuence+Creativity+Threat rank ")
-   
+    st.caption("Each teams expected goals, expected goals against charts gives you a view of attack & defense permonce of the team over the season")
 #
 st.markdown(
     "#### Team stats Analysis :chart_with_upwards_trend: - Attack, Defense, Expected vs Actual"

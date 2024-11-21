@@ -17,10 +17,7 @@ st.logo(
 # sidebar
 with st.sidebar:
     st.title(""":soccer: *Team form & FDR*""")
-    st.caption("--------------------")
-    st.link_button("Personalised transfers list", "https://fplmate.streamlit.app", icon=":material/eye_tracking:")
-    st.caption("Get your team performance, mini-league performance and Watch list picks based on expected goal involvements, points per game, Form, next gameweek expected points and Infuence+Creativity+Threat rank ")
-   
+    st.caption("Team recent form - goals scored, points per game,clean sheets, no of games team scrored in")
 #
 st.markdown(
     "#### Team FORM & FDR Analysis:bar_chart:"

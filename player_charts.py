@@ -10,8 +10,8 @@ def player_stat_perf(df):
     fig = px.scatter(DF_XGI, x='goal_involvements', y='expected_goal_involvements',text='web_name',size="total_points",color="total_points",color_continuous_scale='turbo')
     x_mean = df['goal_involvements'].mean()
     y_mean = df['expected_goal_involvements'].mean()
-    fig.add_hline(y=y_mean,line_dash="dot")
-    fig.add_vline(x=x_mean,line_dash="dot")
+    fig.add_hline(y=y_mean,line_dash="dot",line_color='Blue')
+    fig.add_vline(x=x_mean,line_dash="dot",line_color='Blue')
     fig.update_layout(autosize=False,width=1400,height=750)
     return fig
 #Creates tabs for entry_type
