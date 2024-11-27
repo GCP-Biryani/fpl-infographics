@@ -38,19 +38,19 @@ def create_radar_chart(params, low, high, lower_is_better, player1_values, playe
     fig, axs = mp.grid(figheight=14, grid_height=0.915, title_height=0.06, endnote_height=0.025, title_space=0, endnote_space=0, grid_key='radar', axis=False)
     
     radar.setup_axis(ax=axs['radar'])
-    rings_inner = radar.draw_circles(ax=axs['radar'], facecolor='#ffb2b2', edgecolor='#fc5f5f')
-    radar_output = radar.draw_radar_compare(player1_values, player2_values, ax=axs['radar'], kwargs_radar={'facecolor': '#00f2c1', 'alpha': 0.6}, kwargs_compare={'facecolor': '#d80499', 'alpha': 0.6})
+    rings_inner = radar.draw_circles(ax=axs['radar'], facecolor='#D8D8D8', edgecolor='#fc5f5f')
+    radar_output = radar.draw_radar_compare(player1_values, player2_values, ax=axs['radar'], kwargs_radar={'facecolor': '#08088A', 'alpha': 0.6}, kwargs_compare={'facecolor': '#0B6121', 'alpha': 0.6})
     radar_poly, radar_poly2, vertices1, vertices2 = radar_output
     range_labels = radar.draw_range_labels(ax=axs['radar'], fontsize=25, fontproperties=robotto_thin.prop)
     param_labels = radar.draw_param_labels(ax=axs['radar'], fontsize=25, fontproperties=robotto_thin.prop)
-    axs['radar'].scatter(vertices1[:, 0], vertices1[:, 1], c='#00f2c1', edgecolors='#6d6c6d', marker='o', s=150, zorder=2)
-    axs['radar'].scatter(vertices2[:, 0], vertices2[:, 1], c='#d80499', edgecolors='#6d6c6d', marker='o', s=150, zorder=2)
+    axs['radar'].scatter(vertices1[:, 0], vertices1[:, 1], c='#08088A', edgecolors='#6d6c6d', marker='o', s=150, zorder=2)
+    axs['radar'].scatter(vertices2[:, 0], vertices2[:, 1], c='#0B6121', edgecolors='#6d6c6d', marker='o', s=150, zorder=2)
     
     endnote_text = axs['endnote'].text(0.99, 0.5, '@FPL-infographics', fontsize=15, fontproperties=robotto_thin.prop, ha='right', va='center')
-    title1_text = axs['title'].text(0.01, 0.65, player1_name, fontsize=25, color='#01c49d', fontproperties=robotto_bold.prop, ha='left', va='center')
-    title3_text = axs['title'].text(0.99, 0.65, player2_name, fontsize=25, fontproperties=robotto_bold.prop, ha='right', va='center', color='#d80499')
+    title1_text = axs['title'].text(0.01, 0.65, player1_name, fontsize=25, color='#08088A', fontproperties=robotto_bold.prop, ha='left', va='center')
+    title3_text = axs['title'].text(0.99, 0.65, player2_name, fontsize=25, fontproperties=robotto_bold.prop, ha='right', va='center', color='#0B6121')
     
-    fig.set_facecolor('#f2dad2')
+    fig.set_facecolor('#BDBDBD')
     st.pyplot(fig)
 ##
 def compare_players_and_create_radar(df, player1, player2, selected_params, param_mapping, lower_is_better):
