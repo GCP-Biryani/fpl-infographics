@@ -1,16 +1,10 @@
 import streamlit as st
-import pandas as pd
-import requests
-#
-url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
-r = requests.get(url)
-json1 = r.json()
-events_df = pd.DataFrame(json1['events'])
-CURR_GW = events_df.loc[events_df['is_current'] == True]['id'].iloc[-1]
-#
+from fbref_functions import *
+
+##############################
 # page config
 st.set_page_config(
-    page_title="Welcome to FPL Infographics", page_icon=":soccer:",layout="wide"
+    page_title="Player comparision tool", page_icon=":soccer:",layout="wide"
 )
 LOGO = "logo.png"
 st.logo(
@@ -34,21 +28,11 @@ with st.sidebar:
     st.page_link("pages/fbref_compare.py", label="Players comparision tool", icon=":material/compare:",help="Compare player stats using radar charts for performance,shooting,passing,defensive stats")
     st.page_link("pages/12_ALL_Player_Stats.py", label="ALL STATS", icon=":material/select_all:",help="All available stats for all players")
 #
-# landing
-st.title(":soccer: :rainbow[*FPL Infographics*]")
-st.subheader(
-    """**Your Ultimate Fantasy Premier League analysis graphs!**
-"""
-)
+ 
+##############################
+def main():    
+    st.title("Player Comparision tool")
+    player_season_compare()
 
-# latest gameweek
-st.markdown(
-    "##### Latest data update - Gameweek :blue["
-    + str(CURR_GW)
-    + """] 
- :blue[Use our latest data, stats, and models to prepare your team for success in Gameweek """
-    + str(CURR_GW + 1)
-    + ".]"
-)
-st.caption("FPL infographics can be incredibly helpful in making informed decisions by visualizing key stats and data in an easily digestible format. By transforming complex numbers and trends into graphs and tables, you can better understand player performances, team trends, and matchups.")
-#
+if __name__ == "__main__":
+    main()

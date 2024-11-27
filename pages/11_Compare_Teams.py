@@ -14,19 +14,21 @@ st.logo(
     )
 # sidebar
 with st.sidebar:
-    st.title(""":soccer: *Compare Teams*""")
-    st.caption("compare teams from mini-league and see common picks and differentials + points by each position")
-
-# url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
-# r = requests.get(url)
-# json1 = r.json()
-# players_df = pd.DataFrame(json1['elements'])
-# events_df = pd.DataFrame(json1['events'])
-# gwplayed = events_df.loc[events_df['is_current'] == True]['id'].iloc[-1]
-# keep_cols = ["id","web_name","event_points","element_type"]
-# players_df = players_df[keep_cols]
-# players_df['element_type'] = players_df['element_type'].replace([1,2,3,4],['GKP','DEF','MID','FWD'])
-
+    st.title(""":soccer: *FPL Infographics*""")
+    #
+    st.page_link("pages/1_Players_analysis.py", label="Player Analysis", icon=":material/analytics:",help="players performance, expected - goals, assists, involvements, shots, key passses, points per game, points per million and more..")
+    st.page_link("pages/2_Teams_analysis.py", label="Team Analysis", icon=":material/monitoring:",help="Each teams expected goals, expected goals against charts gives you a view of attack & defense permonce of the team over the season")
+    st.page_link("pages/3_Player_history.py", label="Player season history", icon=":material/history:",help="Player gameweek history with stats like expected,points,BPS")
+    st.page_link("pages/4_Team_form_&_FDR.py", label="Team Form & FDR", icon=":material/flowsheet:",help="Team recent form - goals scored, points per game,clean sheets, no of games team scrored in")
+    st.page_link("pages/6_Set_Piece_Takers.py", label="Set-Piece takers", icon=":material/flag:",help="Penalties, corners, free kicks - whos on them")
+    st.page_link("pages/8_Injuries_&_Cards.py", label="Injuries & Cards", icon=":material/style:",help="Latest injury news & Yellow, red cards table")
+    st.page_link("pages/9_Price_changes.py", label="Price changes & Predictions", icon=":material/currency_pound:",help="Today price change and predicted price changes for the next few days")
+    st.page_link("pages/12_Transfer_watchlist.py", label="Transfer recommondations", icon=":material/transfer_within_a_station:",help="Get your team performance, mini-league performance and Watch list picks based on expected goal involvements, points per game, Form, next gameweek expected points and Infuence+Creativity+Threat rank")
+    st.page_link("pages/10_Mini-league_Analyser.py", label="Mini-leagye (ML) Analyser", icon=":material/analytics:",help="Mini-league analysis - player ownership, captain choice, league race, each team xGI, bench points, team value")
+    st.page_link("pages/11_Compare_Teams.py", label="ML Teams comparision tool", icon=":material/compare_arrows:",help="compare teams from mini-league and see common picks and differentials + points by each position")
+    st.page_link("pages/fbref_compare.py", label="Players comparision tool", icon=":material/compare:",help="Compare player stats using radar charts for performance,shooting,passing,defensive stats")
+    st.page_link("pages/12_ALL_Player_Stats.py", label="ALL STATS", icon=":material/select_all:",help="All available stats for all players")
+##
 players_df = pd.read_csv('players_data.csv')
 events_df = pd.read_csv('events.csv')
 gwplayed = events_df.loc[events_df['is_current'] == True]['id'].iloc[-1]
@@ -125,7 +127,6 @@ def points_by_position(picks_list):
     df_team_picks = pd.DataFrame(team_picks, columns=["Name","photo","Position","Points"]).groupby('Position',as_index=False).sum()
     fig_pos_scores = px.pie(df_team_picks,values='Points',names='Position',hover_data=['Name'],color='Position',hole=0.2)
     return fig_pos_scores
-     
 #
 #
 st.caption("* Additional captain points are not counted")

@@ -2,8 +2,10 @@
 import requests
 import pandas as pd
 import numpy as np
+from functools import reduce
 from functions import *
 import soccerdata as sd
+from fbref_functions import *
 pd.options.mode.chained_assignment = None
 # %%
 players_epl_unused_columns = ['chance_of_playing_next_round','chance_of_playing_this_round','code','cost_change_event','cost_change_event_fall','cost_change_start','cost_change_start_fall','in_dreamteam','special','squad_number','transfers_in','transfers_in_event','transfers_out','transfers_out_event','region','influence_rank_type','creativity_rank_type','threat_rank_type','ict_index_rank_type','corners_and_indirect_freekicks_text','direct_freekicks_text','penalties_text','now_cost_rank','now_cost_rank_type','form_rank','form_rank_type','points_per_game_rank','points_per_game_rank_type','selected_rank','selected_rank_type','dreamteam_count','first_name','second_name']
@@ -276,7 +278,7 @@ FWD_DF_history.to_csv('FWD_history.csv',index=False)
 ##########################
 # FBref team data
 ##########################
-fbref = sd.FBref(leagues="ENG-Premier League", seasons=2024)
+fbref = sd.FBref(leagues="ENG-Premier League", seasons=2425, no_cache=True, no_store=True)
 teams = ["Arsenal","Aston Villa","Bournemouth","Brentford","Brighton","Chelsea","Crystal Palace","Everton","Fulham","Ipswich Town","Leicester City","Liverpool","Manchester City","Manchester Utd","Newcastle Utd","Southampton","Tottenham","West Ham","Wolves"]
 for team in teams:
     DF = fbref.read_team_match_stats(stat_type="schedule", team=team)
@@ -288,3 +290,38 @@ DF_NFO = fbref.read_team_match_stats(stat_type="schedule", team="Nott'ham Forest
 DF_NFO = DF_NFO[~DF_NFO["result"].isna()]
 DF_NFO.to_csv('fbref-NFO.csv')
 # %%
+##########################
+# FBref player data
+##########################
+standard_stats_columns = ['player','Performance_Gls','Performance_Ast','Performance_G+A','Performance_G-PK','Performance_PK','Expected_xG','Expected_npxG','Expected_xAG','Expected_npxG+xAG','Per90Minutes_Gls','Per90Minutes_Ast','Per90Minutes_G+A','Per90Minutes_G-PK', 'Per90Minutes_G+A-PK', 'Per90Minutes_xG','Per90Minutes_xAG', 'Per90Minutes_xG+xAG', 'Per90Minutes_npxG','Per90Minutes_npxG+xAG']
+shooting_stats_columns = ['player','Standard_Sh','Standard_SoT','Standard_SoT%','Standard_Sh/90','Standard_SoT/90','Standard_G/Sh','Standard_G/SoT',]
+goalshot_stats_columns = ['player','SCA_SCA','SCA_SCA90','GCA_GCA','GCA_GCA90']
+passing_stats_columns = ['player','Total_Cmp','Total_Att','Total_Cmp%','KP_','1/3_','PPA_','CrsPA_',]
+possition_stats_columns = ['player','Touches_Att3rd','Touches_AttPen','Take-Ons_Att','Take-Ons_Succ',]
+defense_stats_columns = ['player','Tackles_Tkl','Tackles_TklW','Int_','Tkl+Int_','Blocks_Sh','Clr_','Err_']
+##
+fbref = sd.FBref(leagues="ENG-Premier League", seasons='2425', no_cache=True, no_store=True)
+#
+standard_stats = rename_cols(fbref.read_player_season_stats(stat_type='standard')).fillna(0.0)
+standard_stats = combine_duplicates(standard_stats[standard_stats_columns])
+#
+shooting_stats = rename_cols(fbref.read_player_season_stats(stat_type='shooting')).fillna(0.0)
+shooting_stats = combine_duplicates(shooting_stats[shooting_stats_columns])
+#
+goalshot_stats = rename_cols(fbref.read_player_season_stats(stat_type='goal_shot_creation')).fillna(0.0)
+goalshot_stats = combine_duplicates(goalshot_stats[goalshot_stats_columns])
+#
+passing_stats = rename_cols(fbref.read_player_season_stats(stat_type='passing')).fillna(0.0)
+passing_stats = combine_duplicates(passing_stats[passing_stats_columns])
+#
+possition_stats = rename_cols(fbref.read_player_season_stats(stat_type='possession')).fillna(0.0)
+possition_stats = combine_duplicates(possition_stats[possition_stats_columns])
+#
+defense_stats = rename_cols(fbref.read_player_season_stats(stat_type='defense')).fillna(0.0)
+defense_stats = combine_duplicates(defense_stats[defense_stats_columns])
+#
+data_frames = [standard_stats,shooting_stats,goalshot_stats,possition_stats,passing_stats,defense_stats]
+players_data = reduce(lambda  left,right: pd.merge(left,right,on=['player'],how='outer'), data_frames).fillna(0.0).round(2)
+players_data = players_data.drop_duplicates()
+players_data.to_csv('fbref_players_data.csv')
+#
