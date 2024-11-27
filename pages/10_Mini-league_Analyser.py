@@ -38,7 +38,7 @@ with st.sidebar:
 # prettytable headers 
 ##############################
 headers = ['Team_Name','GW_Points','Season_Points','current_rank','last_rank','GW_bench_points','season_bench_points','GW_transfers','GW_transfers_cost',
-           'Season_transfers','Season_transfers_cost','Team_Value','Bank','Total_Value','GW_Captain','GW_Captain_points','team_XGI','nxp']
+           'Season_transfers','Season_transfers_cost','Team_Value','Bank','Total_Value','GW_Captain','GW_Captain_points','team_XGI']
 table = PrettyTable(headers)
 
 url = 'https://fantasy.premierleague.com/api/bootstrap-static'
@@ -138,16 +138,16 @@ def leage_analysys(league_id):
                 total_xgi = total_xgi + float(pl_xgi)
         total_xgi = round(total_xgi, 2)
         data.append(total_xgi)
-# Next GW XP
-        total_nxp = 0
-        for each1 in json_pick['picks']:
-            player_id = each1['element']
-            pl_nxp = df_elements.loc[df_elements['id']== player_id]['ep_next'].iloc[-1]
-            total_nxp = total_nxp + float(pl_nxp)
-            if captain == True:
-                total_nxp = float(total_nxp) + float(pl_nxp *2)
-            total_nxp = round(total_nxp, 2)
-        data.append(total_nxp)
+# # Next GW XP
+#         total_nxp = 0
+#         for each1 in json_pick['picks']:
+#             player_id = each1['element']
+#             pl_nxp = df_elements.loc[df_elements['id']== player_id]['ep_next'].iloc[-1]
+#             total_nxp = total_nxp + float(pl_nxp)
+#             if captain == True:
+#                 total_nxp = float(total_nxp) + float(pl_nxp *2)
+#             total_nxp = round(total_nxp, 2)
+#         data.append(total_nxp)
         table.add_row(data)
 ##
         df_history = pd.json_normalize(json_history['current'])
@@ -197,8 +197,8 @@ def leage_analysys(league_id):
     df_cap_vs_team = df.sort_values("cap_vs_team", ascending=False)
     fig_team = plot_gw_team_vs_captain(df_cap_vs_team)
     
-# Next GW expected points
-    fig_ep = plot_gw_nGW_xp(df)
+# # Next GW expected points
+#     fig_ep = plot_gw_nGW_xp(df)
     
 # Captain
     df_cap_count = df.groupby(['GW_Captain'])['GW_Captain'].count().reset_index(name='count')
@@ -223,7 +223,7 @@ def leage_analysys(league_id):
         st.plotly_chart(fig_tv,theme=None, use_container_width=False)
     ##########################
     st.header("Gameweek stats")
-    tab1,tab2,tab3,tab4,tab5,tab6 = st.tabs(["GW Points","Captain choice","Team vs Captain points","Points on bench","Team xGI","Next GW expected points"])
+    tab1,tab2,tab3,tab4,tab5 = st.tabs(["GW Points","Captain choice","Team vs Captain points","Points on bench","Team xGI"])
     with tab1:
         st.plotly_chart(fig_gw_points,theme=None, use_container_width=False)
     with tab2:
@@ -234,8 +234,8 @@ def leage_analysys(league_id):
         st.plotly_chart(fig_w_bench,theme=None, use_container_width=False)
     with tab5:
         st.plotly_chart(fig_xgi,theme=None, use_container_width=False)
-    with tab6:
-        st.plotly_chart(fig_ep,theme=None, use_container_width=False)
+    # with tab6:
+    #     st.plotly_chart(fig_ep,theme=None, use_container_width=False)
     ##########################
     # st.header("Season stats")
     # tabb = st.tabs(["points on bench(season)"])
