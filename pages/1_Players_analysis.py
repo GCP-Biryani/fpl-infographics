@@ -1,5 +1,5 @@
 import streamlit as st
-from player_charts import *
+from charts import *
 #
 # page config
 st.set_page_config(

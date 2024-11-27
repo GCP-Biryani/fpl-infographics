@@ -5,6 +5,7 @@ from prettytable import PrettyTable
 import plotly.express as px
 import plotly.graph_objects as go
 from functions import *
+from charts import *
 from io import StringIO
 ##############################
 # page config
