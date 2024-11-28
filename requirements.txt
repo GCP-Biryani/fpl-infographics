@@ -3,9 +3,10 @@ pandas
 tabulate
 plotly
 streamlit
-streamlit_extras
 soccerdata
 setuptools
 beautifulsoup4
 prettytable
 mplsoccer
+seaborn
+matplotlib

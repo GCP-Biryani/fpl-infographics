@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import soccerdata as sd
 from charts import *
 #
 #
@@ -17,11 +16,10 @@ st.logo(
 # sidebar
 with st.sidebar:
     st.title(""":soccer: *FPL Infographics*""")
-    #
     st.page_link("pages/1_Players_analysis.py", label="Player Analysis", icon=":material/analytics:",help="players performance, expected - goals, assists, involvements, shots, key passses, points per game, points per million and more..")
-    st.page_link("pages/2_Teams_analysis.py", label="Team Analysis", icon=":material/monitoring:",help="Each teams expected goals, expected goals against charts gives you a view of attack & defense permonce of the team over the season")
+    st.page_link("pages/2_Teams_analysis.py", label="Team Analysis", icon=":material/monitoring:",help="Team form, Each teams expected goals, expected goals against charts gives you a view of attack & defense permonce of the team over the season")
     st.page_link("pages/3_Player_history.py", label="Player season history", icon=":material/history:",help="Player gameweek history with stats like expected,points,BPS")
-    st.page_link("pages/4_Team_form_&_FDR.py", label="Team Form & FDR", icon=":material/flowsheet:",help="Team recent form - goals scored, points per game,clean sheets, no of games team scrored in")
+    st.page_link("pages/4_Team_form_&_FDR.py", label="FDR", icon=":material/flowsheet:",help="Fixture difficulty rating")
     st.page_link("pages/6_Set_Piece_Takers.py", label="Set-Piece takers", icon=":material/flag:",help="Penalties, corners, free kicks - whos on them")
     st.page_link("pages/8_Injuries_&_Cards.py", label="Injuries & Cards", icon=":material/style:",help="Latest injury news & Yellow, red cards table")
     st.page_link("pages/9_Price_changes.py", label="Price changes & Predictions", icon=":material/currency_pound:",help="Today price change and predicted price changes for the next few days")
@@ -34,10 +32,9 @@ with st.sidebar:
 
 # #
 st.markdown(
-    "#### Team stats Analysis :chart_with_upwards_trend: - Attack, Defense, Expected vs Actual"
+    "#### Team stats Analysis :chart_with_upwards_trend: - Form, Attack, Defense, Expected vs Actual"
 )
 # Team dataframes
-fbref = sd.FBref(leagues="ENG-Premier League", seasons=2024)
 DF_ARS = pd.read_csv('fbref-Arsenal.csv')
 DF_AVL = pd.read_csv('fbref-Aston Villa.csv')
 DF_BOU = pd.read_csv('fbref-Bournemouth.csv')
@@ -60,7 +57,14 @@ DF_WHU = pd.read_csv('fbref-West Ham.csv')
 DF_WOL = pd.read_csv('fbref-Wolves.csv')
 
 # team tabs
-tab1,tab2,tab3,tab4,tab5,tab6,tab7,tab8,tab9,tab10,tab11,tab12,tab13,tab14,tab15,tab16,tab17,tab18,tab19,tab20 = st.tabs(["ARS","AVL","BOU", "BRE","BRI","CHE","CRY","EVE","FUL","IPS","LEI","LIV","MNC","MNU","NEW","NFO","SOU","TOT","WHU","WOL"])
+tab0,tab1,tab2,tab3,tab4,tab5,tab6,tab7,tab8,tab9,tab10,tab11,tab12,tab13,tab14,tab15,tab16,tab17,tab18,tab19,tab20 = st.tabs(["FORM","ARS","AVL","BOU", "BRE","BRI","CHE","CRY","EVE","FUL","IPS","LEI","LIV","MNC","MNU","NEW","NFO","SOU","TOT","WHU","WOL"])
+with tab0:
+    TEAM_FORM_DF = pd.read_csv('team_form.csv', index_col=False)
+    options = ["Points Per Game(Last5)", "Goals Per Game(Last5)", "Points Per Game(Season)","Clean Sheets", "GAMES SCORED IN"]
+    selection = st.radio("Select an indicator", options,horizontal=True)
+    fig = px.bar(TEAM_FORM_DF,x=selection,y='Team',color=selection,color_continuous_scale='plasma_r',text=selection,orientation='h')
+    fig.update_layout(autosize=False,width=1500,height=700)
+    st.plotly_chart(fig, theme=None)
 with tab1:
     chart_tabs(DF_ARS)
 with tab2:

@@ -114,7 +114,9 @@ fixtures_df = fixtures_df[['Gameweek', 'kickoff_date', 'kickoff_time', 'team_a',
 # set team names instead of IDs
 fixtures_df['team_a'] = fixtures_df['team_a'].map(teams_df.set_index('id').name)
 fixtures_df['team_h'] = fixtures_df['team_h'].map(teams_df.set_index('id').name)
-
+fixtures_df.to_csv('fixtures.csv',index=False)
+#
+#
 def fixtures_by_team(fixtures, team, gameweek):
     away = fixtures.loc[fixtures['team_a'] == team]
     away.drop(['team_h_difficulty'], axis=1, inplace=True)
