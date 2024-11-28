@@ -3,6 +3,7 @@ import pandas as pd
 import requests
 import plotly.express as px
 from bs4 import BeautifulSoup
+from io import StringIO
 from tabulate import tabulate
 pd.options.mode.chained_assignment = None
 
@@ -47,8 +48,9 @@ with tab2:
     header = ({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'})
     html_text = requests.get(url, headers=header).text
     soup = BeautifulSoup(html_text, 'lxml')
-    table = soup.find_all('table')[0]
-    df = pd.read_html(str(table))[0]
+    table = soup.find_all('table')[2]
+    # df = pd.read_html(str(table))[0]
+    df = pd.read_html(StringIO(str(table)))[0]
     headers = []
     rows = []
     for i, row in enumerate(table.find_all('tr')):
@@ -70,8 +72,8 @@ with tab1:
     html_text = requests.get(url, headers=header).text
     soup = BeautifulSoup(html_text, 'lxml')
     table = soup.find_all('table')[0]
-    df = pd.read_html(str(table))[0]
-
+    # df = pd.read_html(str(table))[0]
+    df = pd.read_html(StringIO(str(table)))[0]
     headers = []
     rows = []
     for i, row in enumerate(table.find_all('tr')):
