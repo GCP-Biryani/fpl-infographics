@@ -74,7 +74,7 @@ with tabx:
         for team in fixture_matrix_fdr['Teams'].values:
             fdr = fixtures_by_team(fixtures_going_forward, team, GAMEWEEKS_PLAYED+period)['FDR'].values[i-GAMEWEEKS_PLAYED]
             gw_fix.append(fdr)
-        fixture_matrix_fdr['Gameweek {}'.format(i+1)] = gw_fix
+        fixture_matrix_fdr['Gameweek {}'.format(i)] = gw_fix
 
     for i in range(GAMEWEEKS_PLAYED, GAMEWEEKS_PLAYED+period):
         gw_fix = []
@@ -82,7 +82,7 @@ with tabx:
             opponent = fixtures_by_team(fixtures_going_forward, team, GAMEWEEKS_PLAYED+period)['opponent'].values[i-GAMEWEEKS_PLAYED]
             h_or_a = fixtures_by_team(fixtures_going_forward, team, GAMEWEEKS_PLAYED+period)['h_or_a'].values[i-GAMEWEEKS_PLAYED]
             gw_fix.append('{}, {}'.format(opponent, h_or_a))
-        fixture_matrix_matches['Gameweek {}'.format(i+1)] = gw_fix
+        fixture_matrix_matches['Gameweek {}'.format(i)] = gw_fix
     #
     fig, ax = plt.subplots(figsize=(15,15)) 
     ax = sns.heatmap(fixture_matrix_fdr.set_index('Teams'), annot=fixture_matrix_matches.set_index('Teams'), fmt='', linewidth=.5, cmap='RdYlGn_r')
