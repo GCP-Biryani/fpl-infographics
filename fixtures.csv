@@ -119,7 +119,7 @@ Gameweek,kickoff_date,kickoff_time,team_a,team_a_score,team_h,team_h_score,team_
 12,2024-11-24,14:00:00,Liverpool,3.0,Southampton,2.0,5,2
 12,2024-11-24,16:30:00,Man Utd,1.0,Ipswich,1.0,3,2
 12,2024-11-25,20:00:00,West Ham,2.0,Newcastle,0.0,2,4
-13,2024-11-29,20:00:00,Southampton,,Brighton,,2,3
+13,2024-11-29,20:00:00,Southampton,1.0,Brighton,1.0,2,3
 13,2024-11-30,15:00:00,Leicester,,Brentford,,2,3
 13,2024-11-30,15:00:00,Newcastle,,Crystal Palace,,3,2
 13,2024-11-30,15:00:00,Ipswich,,Nott'm Forest,,2,2
