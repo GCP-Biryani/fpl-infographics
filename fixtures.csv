@@ -125,10 +125,10 @@ Gameweek,kickoff_date,kickoff_time,team_a,team_a_score,team_h,team_h_score,team_
 13,2024-11-30,15:00:00,Ipswich,0.0,Nott'm Forest,1.0,2,2
 13,2024-11-30,15:00:00,Bournemouth,4.0,Wolves,2.0,2,2
 13,2024-11-30,17:30:00,Arsenal,5.0,West Ham,2.0,5,2
-13,2024-12-01,13:30:00,Aston Villa,,Chelsea,,3,4
-13,2024-12-01,13:30:00,Everton,,Man Utd,,2,3
-13,2024-12-01,13:30:00,Fulham,,Spurs,,2,4
-13,2024-12-01,16:00:00,Man City,,Liverpool,,5,5
+13,2024-12-01,13:30:00,Aston Villa,0.0,Chelsea,3.0,3,4
+13,2024-12-01,13:30:00,Everton,0.0,Man Utd,4.0,2,3
+13,2024-12-01,13:30:00,Fulham,1.0,Spurs,1.0,2,4
+13,2024-12-01,16:00:00,Man City,0.0,Liverpool,2.0,5,5
 14,2024-12-03,19:30:00,Crystal Palace,,Ipswich,,2,2
 14,2024-12-03,20:15:00,West Ham,,Leicester,,2,2
 14,2024-12-04,19:30:00,Wolves,,Everton,,2,2
