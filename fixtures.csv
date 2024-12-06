@@ -137,8 +137,8 @@ Gameweek,kickoff_date,kickoff_time,team_a,team_a_score,team_h,team_h_score,team_
 14,2024-12-04,19:30:00,Chelsea,5.0,Southampton,1.0,4,2
 14,2024-12-04,20:15:00,Man Utd,0.0,Arsenal,2.0,3,5
 14,2024-12-04,20:15:00,Brentford,1.0,Aston Villa,3.0,2,4
-14,2024-12-05,19:30:00,Brighton,,Fulham,,2,3
-14,2024-12-05,20:15:00,Spurs,,Bournemouth,,4,3
+14,2024-12-05,19:30:00,Brighton,1.0,Fulham,3.0,2,3
+14,2024-12-05,20:15:00,Spurs,0.0,Bournemouth,1.0,4,3
 15,2024-12-07,12:30:00,Liverpool,,Everton,,5,2
 15,2024-12-07,15:00:00,Southampton,,Aston Villa,,2,4
 15,2024-12-07,15:00:00,Newcastle,,Brentford,,3,3
