@@ -27,6 +27,7 @@ with st.sidebar:
     st.page_link("pages/10_Mini-league_Analyser.py", label="Mini-leagye (ML) Analyser", icon=":material/analytics:",help="Mini-league analysis - player ownership, captain choice, league race, each team xGI, bench points, team value")
     st.page_link("pages/11_Compare_Teams.py", label="ML Teams comparision tool", icon=":material/compare_arrows:",help="compare teams from mini-league and see common picks and differentials + points by each position")
     st.page_link("pages/fbref_compare.py", label="Players comparision tool", icon=":material/compare:",help="Compare player stats using radar charts for performance,shooting,passing,defensive stats")
+    st.page_link("pages/Expected_Points.py", label="Expected Points", icon=":material/psychology:",help="Expected points for selected gameweek")
     st.page_link("pages/12_ALL_Player_Stats.py", label="ALL STATS", icon=":material/select_all:",help="All available stats for all players")
 #
 players_df = pd.read_csv('players_data.csv')
@@ -123,6 +124,8 @@ def transfer_watchlist(pickslist):
     with tab5:
          st.plotly_chart(fig_ep, theme=None, use_container_width=False)
 ## main
+if 'team_id' not in st.session_state:
+        st.session_state['team_id'] = ''
 team_id = st.text_input("Enter your FPL ID")
 ##############################
 if st.button('Analyse & get transfer watchlist'):

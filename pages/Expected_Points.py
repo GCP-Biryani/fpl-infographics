@@ -1,13 +1,10 @@
 import streamlit as st
-import pandas as pd
 import requests
-#
-events_df = pd.read_csv('events.csv')
-CURR_GW = events_df.loc[events_df['is_current'] == True]['id'].iloc[-1]
+import pandas as pd
 #
 # page config
 st.set_page_config(
-    page_title="Welcome to FPL Infographics", page_icon=":soccer:",layout="wide"
+    page_title="Player expected points (xP)", page_icon=":soccer:",layout="wide"
 )
 LOGO = "logo.png"
 st.logo(
@@ -31,22 +28,52 @@ with st.sidebar:
     st.page_link("pages/fbref_compare.py", label="Players comparision tool", icon=":material/compare:",help="Compare player stats using radar charts for performance,shooting,passing,defensive stats")
     st.page_link("pages/Expected_Points.py", label="Expected Points", icon=":material/psychology:",help="Expected points for selected gameweek")
     st.page_link("pages/12_ALL_Player_Stats.py", label="ALL STATS", icon=":material/select_all:",help="All available stats for all players")
- #   
-# landing
-st.title(":soccer: :rainbow[*FPL Infographics*]")
-st.subheader(
-    """**Your Ultimate Fantasy Premier League analysis graphs!**
-"""
-)
-
-# latest gameweek
-st.markdown(
-    "##### Latest data update - Gameweek :blue["
-    + str(CURR_GW)
-    + """] 
- :blue[Use our latest data, stats, and models to prepare your team for success in Gameweek """
-    + str(CURR_GW + 1)
-    + ".]"
-)
-st.caption("FPL infographics can be incredibly helpful in making informed decisions by visualizing key stats and data in an easily digestible format. By transforming complex numbers and trends into graphs and tables, you can better understand player performances, team trends, and matchups.")
 #
+events_df = pd.read_csv('events.csv')
+CURR_GW = events_df.loc[events_df['is_current'] == True]['id'].iloc[-1]
+df = pd.read_csv('fpl-form-predicted-points.csv')
+def get_xp(id,gw,df):
+    col = str(gw)+str('_pts')
+    df_id = df.loc[df['ID'] == id, ['Name','Pos','Team',col]]
+    return df_id
+def get_my_team(team_id,CURR_GW,selected):
+    url4 = f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{CURR_GW}/picks/"
+    json_pick = requests.get(url4).json()
+    json_pick_df = pd.DataFrame(json_pick['picks'])
+    picks = json_pick_df['element'].to_list()
+#
+    dfs = []
+    for pick in picks:
+        data = get_xp (pick,gw,df)
+        dfs.append(data)
+    final = pd.concat(dfs, ignore_index=True).sort_values(by=str(selected)+str('_pts'),ascending=False)
+    st.dataframe(final,hide_index=True,use_container_width=False,height=600)
+#
+st.header('Expected Points (xP)')
+gw = st.slider("Select the gameweek for predictions?", 15, 38, 15)
+#
+tab1,tab2,tab3,tab4,tab5 = st.tabs(['My Team', 'FWD', 'MID', 'DEF', 'GKP'])
+with tab1:
+    if 'team_id' not in st.session_state:
+        st.session_state['team_id'] = ''
+    team_id = st.text_input("Enter your FPL ID")
+    if team_id:
+        st.session_state['team_id'] = team_id
+        with st.spinner("please wait..."):
+            get_my_team(team_id,CURR_GW,gw)
+with tab2:
+    col = str(gw)+str('_pts')
+    df_fwd = df.loc[df['Pos'] == 'FWD',['Name','Pos','Team',col]].sort_values(by=str(gw)+str('_pts'),ascending=False)
+    st.dataframe(df_fwd,hide_index=True,use_container_width=False,width=600,height=1000)
+with tab3:
+    col1 = str(gw)+str('_pts')
+    df_mid = df.loc[df['Pos'] == 'MID',['Name','Pos','Team',col1] ].sort_values(by=str(gw)+str('_pts'),ascending=False)
+    st.dataframe(df_mid,hide_index=True,use_container_width=False,width=600,height=1000)
+with tab4:
+    col = str(gw)+str('_pts')
+    df_def = df.loc[df['Pos'] == 'DEF',['Name','Pos','Team',col] ].sort_values(by=str(gw)+str('_pts'),ascending=False)
+    st.dataframe(df_def,hide_index=True,use_container_width=False,width=600,height=1000)
+with tab5:
+    col = str(gw)+str('_pts')
+    df_gkp = df.loc[df['Pos'] == 'GKP',['Name','Pos','Team',col] ].sort_values(by=str(gw)+str('_pts'),ascending=False)
+    st.dataframe(df_gkp,hide_index=True,use_container_width=False,width=600,height=1000)
