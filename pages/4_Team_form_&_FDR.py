@@ -57,11 +57,12 @@ def fixtures_by_team(fixtures, team, gameweek):
 #######################
 tabx,taby = st.tabs(["FDR", "FDR Analysis"])
 with tabx:
-    values = st.slider("Select the period", CURR_GW+1, 38, (CURR_GW+1, CURR_GW+3))
+    gameweek = CURR_GW+1
+    values = st.slider("Select the period", gameweek+1, 38, (gameweek+1, gameweek+3))
     GAMEWEEKS_PLAYED = values[0]
-    period = values[1] - CURR_GW
+    period = (values[1] - values[0])+1
     #
-    fixtures_going_forward = fixtures.loc[fixtures['Gameweek'] > CURR_GW]
+    fixtures_going_forward = fixtures.loc[fixtures['Gameweek'] > gameweek]
     #
     pl_teams = fixtures['team_h'].unique()
     fixture_matrix_fdr = pd.DataFrame({'Teams': pl_teams})
