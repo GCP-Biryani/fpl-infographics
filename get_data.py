@@ -104,9 +104,10 @@ fixtures_df = all_fixtures_df
 fixtures_unused_columns = ['id', 'code', 'finished', 'finished_provisional', 'minutes', 'provisional_start_time', 'started', 'stats', 'pulse_id']
 fixtures_df.drop(fixtures_unused_columns, axis=1, inplace=True)
 fixtures_df.rename(columns={'event': 'Gameweek'}, inplace=True)
-fixtures_df.head()
+# fixtures_df.head()
 
 # format kick off times
+fixtures_df = fixtures_df[~fixtures_df['kickoff_time'].isnull()]
 fixtures_df['kickoff_date'] = fixtures_df['kickoff_time'].apply(lambda x: x.split('T')[0])
 fixtures_df['kickoff_time'] = fixtures_df['kickoff_time'].apply(lambda x: x.split('T')[1].replace('Z', ''))
 fixtures_df = fixtures_df[['Gameweek', 'kickoff_date', 'kickoff_time', 'team_a', 'team_a_score', 'team_h', 'team_h_score', 'team_h_difficulty', 'team_a_difficulty']]
