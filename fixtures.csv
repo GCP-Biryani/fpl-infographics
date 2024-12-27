@@ -168,14 +168,14 @@ Gameweek,kickoff_date,kickoff_time,team_a,team_a_score,team_h,team_h_score,team_
 17.0,2024-12-22,14:00:00,Wolves,3.0,Leicester,0.0,2,2
 17.0,2024-12-22,14:00:00,Bournemouth,3.0,Man Utd,0.0,3,3
 17.0,2024-12-22,16:30:00,Liverpool,6.0,Spurs,3.0,5,4
-18.0,2024-12-26,12:30:00,Everton,,Man City,,2,4
-18.0,2024-12-26,15:00:00,Crystal Palace,,Bournemouth,,3,3
-18.0,2024-12-26,15:00:00,Fulham,,Chelsea,,3,4
-18.0,2024-12-26,15:00:00,Aston Villa,,Newcastle,,3,4
-18.0,2024-12-26,15:00:00,Spurs,,Nott'm Forest,,4,3
-18.0,2024-12-26,15:00:00,West Ham,,Southampton,,2,2
-18.0,2024-12-26,17:30:00,Man Utd,,Wolves,,3,2
-18.0,2024-12-26,20:00:00,Leicester,,Liverpool,,2,5
+18.0,2024-12-26,12:30:00,Everton,1.0,Man City,1.0,2,4
+18.0,2024-12-26,15:00:00,Crystal Palace,0.0,Bournemouth,0.0,3,3
+18.0,2024-12-26,15:00:00,Fulham,2.0,Chelsea,1.0,3,4
+18.0,2024-12-26,15:00:00,Aston Villa,0.0,Newcastle,3.0,3,4
+18.0,2024-12-26,15:00:00,Spurs,0.0,Nott'm Forest,1.0,4,3
+18.0,2024-12-26,15:00:00,West Ham,1.0,Southampton,0.0,2,2
+18.0,2024-12-26,17:30:00,Man Utd,0.0,Wolves,2.0,3,2
+18.0,2024-12-26,20:00:00,Leicester,1.0,Liverpool,3.0,2,5
 18.0,2024-12-27,19:30:00,Brentford,,Brighton,,2,3
 18.0,2024-12-27,20:15:00,Ipswich,,Arsenal,,2,5
 19.0,2024-12-29,14:30:00,Man City,,Leicester,,4,2
