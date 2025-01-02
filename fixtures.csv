@@ -187,7 +187,7 @@ Gameweek,kickoff_date,kickoff_time,team_a,team_a_score,team_h,team_h_score,team_
 19.0,2024-12-30,19:45:00,Brighton,2.0,Aston Villa,2.0,3,4
 19.0,2024-12-30,19:45:00,Chelsea,0.0,Ipswich,2.0,4,2
 19.0,2024-12-30,20:00:00,Newcastle,2.0,Man Utd,0.0,3,3
-19.0,2025-01-01,17:30:00,Arsenal,,Brentford,,4,4
+19.0,2025-01-01,17:30:00,Arsenal,3.0,Brentford,1.0,4,4
 20.0,2025-01-04,12:30:00,Newcastle,,Spurs,,3,4
 20.0,2025-01-04,15:00:00,Leicester,,Aston Villa,,2,4
 20.0,2025-01-04,15:00:00,Everton,,Bournemouth,,2,3
