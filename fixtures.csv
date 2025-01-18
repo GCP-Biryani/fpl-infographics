@@ -259,16 +259,16 @@ Gameweek,kickoff_date,kickoff_time,team_a,team_a_score,team_h,team_h_score,team_
 26,2025-02-22,17:30:00,Chelsea,,Aston Villa,,4,4
 26,2025-02-23,14:00:00,Nott'm Forest,,Newcastle,,3,4
 26,2025-02-23,16:30:00,Liverpool,,Man City,,5,4
-27,2025-02-25,19:45:00,Everton,,Brentford,,2,4
-27,2025-02-25,19:45:00,Bournemouth,,Brighton,,3,3
-27,2025-02-25,19:45:00,Arsenal,,Nott'm Forest,,4,3
-27,2025-02-25,19:45:00,Man City,,Spurs,,4,4
-27,2025-02-25,19:45:00,Leicester,,West Ham,,2,2
-27,2025-02-25,19:45:00,Fulham,,Wolves,,3,2
-27,2025-02-25,20:00:00,Aston Villa,,Crystal Palace,,3,3
-27,2025-02-26,19:45:00,Southampton,,Chelsea,,2,4
-27,2025-02-26,20:00:00,Newcastle,,Liverpool,,3,5
-27,2025-02-26,20:00:00,Ipswich,,Man Utd,,2,3
+27,2025-02-25,19:30:00,Bournemouth,,Brighton,,3,3
+27,2025-02-25,19:30:00,Aston Villa,,Crystal Palace,,3,3
+27,2025-02-25,19:30:00,Fulham,,Wolves,,3,2
+27,2025-02-25,20:15:00,Southampton,,Chelsea,,2,4
+27,2025-02-26,19:30:00,Everton,,Brentford,,2,4
+27,2025-02-26,19:30:00,Ipswich,,Man Utd,,2,3
+27,2025-02-26,19:30:00,Arsenal,,Nott'm Forest,,4,3
+27,2025-02-26,19:30:00,Man City,,Spurs,,4,4
+27,2025-02-26,20:15:00,Newcastle,,Liverpool,,3,5
+27,2025-02-27,20:00:00,Leicester,,West Ham,,2,2
 28,2025-03-08,15:00:00,Aston Villa,,Brentford,,3,4
 28,2025-03-08,15:00:00,Fulham,,Brighton,,3,3
 28,2025-03-08,15:00:00,Leicester,,Chelsea,,2,4
