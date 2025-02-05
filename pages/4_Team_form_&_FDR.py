@@ -57,7 +57,7 @@ def fixtures_by_team(fixtures, team, gameweek):
 #######################
 tabx,taby = st.tabs(["FDR", "FDR Analysis"])
 with tabx:
-    gameweek = CURR_GW+1
+    gameweek = CURR_GW
     values = st.slider("Select the period", gameweek+1, 38, (gameweek+1, gameweek+3))
     GAMEWEEKS_PLAYED = values[0]
     period = (values[1] - values[0])+1

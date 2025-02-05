@@ -1,8 +1,13 @@
 import streamlit as st
 import pandas as pd
 import requests
+from bs4 import BeautifulSoup
+from io import StringIO
+from tabulate import tabulate
+pd.options.mode.chained_assignment = None
 #
 events_df = pd.read_csv('events.csv')
+schedule_df = pd.read_csv('fbref_schedule.csv')
 CURR_GW = events_df.loc[events_df['is_current'] == True]['id'].iloc[-1]
 #
 # page config
@@ -50,3 +55,63 @@ st.markdown(
 )
 st.caption("FPL infographics can be incredibly helpful in making informed decisions by visualizing key stats and data in an easily digestible format. By transforming complex numbers and trends into graphs and tables, you can better understand player performances, team trends, and matchups.")
 #
+st.divider()
+#
+tab1, tab2, tab3 = st.tabs(["GW Results","Next Fixtures","Popular Transfers"])
+with tab1:
+    st.markdown(
+        "##### GW:blue["
+        + str(CURR_GW)
+        + """] 
+    """
+        + ""
+    )
+    results_df = schedule_df.loc[schedule_df['week'] == CURR_GW]
+    st.dataframe(
+    results_df,
+    column_order=("home_team","home_xg","score","away_xg","away_team"),
+    column_config={
+        "home_team": st.column_config.ImageColumn(),
+        "away_team": st.column_config.ImageColumn(),
+    },
+    hide_index=True,
+    )
+with tab2:
+    st.markdown(
+        "##### GW:blue["
+        + str(CURR_GW+1)
+        + """] 
+    """
+        + ""
+    )
+    fixture_df = schedule_df.loc[schedule_df['week'] == (CURR_GW+1)]
+    st.dataframe(
+    fixture_df,
+    column_order=('date','time',"home_team","score","away_team"),
+    column_config={
+        "home_team": st.column_config.ImageColumn(),
+        "away_team": st.column_config.ImageColumn(),
+    },
+    hide_index=True,
+    )
+with tab3:
+    url = 'https://www.livefpl.net/prices'          # Price Change prediction
+    header = ({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'})
+    html_text = requests.get(url, headers=header).text
+    soup = BeautifulSoup(html_text, 'lxml')
+    table = soup.find_all('table')[2]
+    df = pd.read_html(StringIO(str(table)))[0]
+    headers = []
+    rows = []
+    for i, row in enumerate(table.find_all('tr')):
+        if i == 0:
+            headers = [el.text.strip() for el in row.find_all('th')]
+        else:
+            rows.append([el.text.strip() for el in row.find_all('td')])
+
+    table = tabulate(
+        rows, 
+        headers=["State", "Predicted Rises", "Predicted Falls"], 
+        tablefmt="rounded_grid"
+    )
+    st.dataframe(df,hide_index=True,height=1300)

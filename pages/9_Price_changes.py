@@ -42,13 +42,13 @@ with st.sidebar:
 st.markdown(
     "##### :money_mouth_face: Price changes & price predictions"
 )
-tab1, tab2 = st.tabs(["Today price changes","Price change predictions"])
+tab1, tab2, tab3 = st.tabs(["Today price changes","Price change predictions","Popular Transfers"])
 with tab2:
     url = 'https://www.livefpl.net/prices'          # Price Change prediction
     header = ({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'})
     html_text = requests.get(url, headers=header).text
     soup = BeautifulSoup(html_text, 'lxml')
-    table = soup.find_all('table')[2]
+    table = soup.find_all('table')[4]
     df = pd.read_html(StringIO(str(table)))[0]
     headers = []
     rows = []
@@ -90,3 +90,24 @@ with tab1:
         tablefmt="rounded_grid"
     )
     st.dataframe(df,hide_index=True,width=1400)
+with tab3:
+    url = 'https://www.livefpl.net/prices'          # Price Change prediction
+    header = ({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'})
+    html_text = requests.get(url, headers=header).text
+    soup = BeautifulSoup(html_text, 'lxml')
+    table = soup.find_all('table')[2]
+    df = pd.read_html(StringIO(str(table)))[0]
+    headers = []
+    rows = []
+    for i, row in enumerate(table.find_all('tr')):
+        if i == 0:
+            headers = [el.text.strip() for el in row.find_all('th')]
+        else:
+            rows.append([el.text.strip() for el in row.find_all('td')])
+
+    table = tabulate(
+        rows, 
+        headers=["State", "Predicted Rises", "Predicted Falls"], 
+        tablefmt="rounded_grid"
+    )
+    st.dataframe(df,hide_index=True,height=1300)
