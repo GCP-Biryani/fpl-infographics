@@ -328,3 +328,13 @@ players_data = reduce(lambda  left,right: pd.merge(left,right,on=['player'],how=
 players_data = players_data.drop_duplicates()
 players_data.to_csv('fbref_players_data.csv')
 #
+# %%
+##########################
+# FBref schedule data
+##########################
+epl_schedule = fbref.read_schedule()
+epl_schedule_df = epl_schedule.reset_index(inplace=True)
+epl_schedule_df = epl_schedule[['week','home_team', 'home_xg', 'score','away_xg', 'away_team']]
+epl_schedule_df['home_team'] = epl_schedule_df['home_team'].map(team_crest)
+epl_schedule_df['away_team'] = epl_schedule_df['away_team'].map(team_crest)
+epl_schedule_df.to_csv('fbref_schedule.csv',index=False)

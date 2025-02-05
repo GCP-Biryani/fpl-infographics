@@ -164,3 +164,25 @@ def player_season_compare():
             )
     elif comparison_type == 'Goalkeeper':
         st.text("Work in progress....")
+
+team_crest = {'Everton': 'https://resources.premierleague.com/premierleague/badges/70/t11.png',
+               'Aston Villa':'',
+               'Brentford':'',
+               'Crystal Palace':'',
+               'Manchester Utd':'',
+               'Fulham':'',
+               'Ipswich Town':'',
+               'Leicester City	':'',
+               'Tottenham':'',
+               'West Ham':'',
+               'Wolves':'',
+               'Chelsea':'',
+               'Brighton':'',
+               'Bournemouth':'',
+               'Arsenal':'',
+               'Liverpool':'',
+               'Manchester City':'',
+               'Newcastle Utd':'',
+               'Southampton':'',
+               "Nott'ham Forest":'',
+               }
