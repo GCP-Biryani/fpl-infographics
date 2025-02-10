@@ -286,11 +286,13 @@ teams = ["Arsenal","Aston Villa","Bournemouth","Brentford","Brighton","Chelsea",
 for team in teams:
     DF = fbref.read_team_match_stats(stat_type="schedule", team=team)
     DF = DF[~DF["result"].isna()]
+    DF['fixture'] = DF['opponent'] + "[" + DF['venue']  + "]"
     DF.to_csv("fbref-"+team+".csv")
 #
 #"Nott'ham Forest"
 DF_NFO = fbref.read_team_match_stats(stat_type="schedule", team="Nott'ham Forest")
 DF_NFO = DF_NFO[~DF_NFO["result"].isna()]
+DF_NFO['fixture'] = DF_NFO['opponent'] + "[" + DF_NFO['venue']  + "]"
 DF_NFO.to_csv('fbref-NFO.csv')
 # %%
 ##########################

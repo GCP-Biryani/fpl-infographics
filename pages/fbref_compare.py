@@ -1,5 +1,5 @@
 import streamlit as st
-from fbref_functions import *
+from compare_player_fbref import *
 
 ##############################
 # page config

@@ -1,6 +1,7 @@
 import plotly.express as px
 import streamlit as st
 import pandas as pd
+import plotly.graph_objects as go
 ####################
 # Team charts
 ####################
@@ -11,16 +12,20 @@ def get_scatter(df,metric):
     return fig
 # Retun area chart for team stats
 def xg_xga(df):
-    fig = px.area(df, x='opponent', y=['xG','xGA'])
-    fig.update_traces(stackgroup = None,fill = 'tozeroy')
-    return fig
+    # fig = px.area(df, x='opponent', y=['xG','xGA'])
+    # fig.update_traces(stackgroup = 'one')
+    # return fig
+    data = [go.Bar(x=df['fixture'], y=df['xG'], name='xG', text=df['xG']),
+             go.Bar(x=df['fixture'], y=df['xGA'], name='xGA', width=0.5, text=df['xGA'])]
+    layout = go.Layout(barmode='overlay',autosize=True)
+    return dict(data = data, layout = layout)
 # Retun bar chart for team Attack
 def xg_goals(df):
-    fig = px.bar(df, x='opponent', y=['xG','GF'],barmode='group',text_auto=True)
+    fig = px.bar(df, x='fixture', y=['xG','GF'],barmode='group',text_auto=True)
     return fig
 # Retun bar chart for team defense
 def xga_goalsa(df):
-    fig = px.bar(df, x='opponent', y=['xGA','GA'],barmode='group',text_auto=True)
+    fig = px.bar(df, x='fixture', y=['xGA','GA'],barmode='group',text_auto=True)
     return fig
 # Retun 3 tabs with team stat charts
 def chart_tabs(df):
