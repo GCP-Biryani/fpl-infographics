@@ -251,13 +251,13 @@ Gameweek,kickoff_date,kickoff_time,team_a,team_a_score,team_h,team_h_score,team_
 25,2025-02-16,16:30:00,Man Utd,0.0,Spurs,1.0,3,3
 25,2025-02-19,19:30:00,Liverpool,2.0,Aston Villa,2.0,5,3
 26,2025-02-21,20:00:00,Brentford,4.0,Leicester,0.0,2,2
-26,2025-02-22,12:30:00,Man Utd,,Everton,,3,3
-26,2025-02-22,15:00:00,West Ham,,Arsenal,,2,4
-26,2025-02-22,15:00:00,Wolves,,Bournemouth,,2,3
-26,2025-02-22,15:00:00,Crystal Palace,,Fulham,,3,3
-26,2025-02-22,15:00:00,Spurs,,Ipswich,,3,2
-26,2025-02-22,15:00:00,Brighton,,Southampton,,3,2
-26,2025-02-22,17:30:00,Chelsea,,Aston Villa,,4,3
+26,2025-02-22,12:30:00,Man Utd,2.0,Everton,2.0,3,3
+26,2025-02-22,15:00:00,West Ham,1.0,Arsenal,0.0,2,4
+26,2025-02-22,15:00:00,Wolves,1.0,Bournemouth,0.0,2,3
+26,2025-02-22,15:00:00,Crystal Palace,2.0,Fulham,0.0,3,3
+26,2025-02-22,15:00:00,Spurs,4.0,Ipswich,1.0,3,2
+26,2025-02-22,15:00:00,Brighton,4.0,Southampton,0.0,3,2
+26,2025-02-22,17:30:00,Chelsea,1.0,Aston Villa,2.0,4,3
 26,2025-02-23,14:00:00,Nott'm Forest,,Newcastle,,3,4
 26,2025-02-23,16:30:00,Liverpool,,Man City,,5,4
 27,2025-02-25,19:30:00,Bournemouth,,Brighton,,3,3
