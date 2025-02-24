@@ -258,8 +258,8 @@ Gameweek,kickoff_date,kickoff_time,team_a,team_a_score,team_h,team_h_score,team_
 26,2025-02-22,15:00:00,Spurs,4.0,Ipswich,1.0,3,2
 26,2025-02-22,15:00:00,Brighton,4.0,Southampton,0.0,3,2
 26,2025-02-22,17:30:00,Chelsea,1.0,Aston Villa,2.0,4,3
-26,2025-02-23,14:00:00,Nott'm Forest,,Newcastle,,3,4
-26,2025-02-23,16:30:00,Liverpool,,Man City,,5,4
+26,2025-02-23,14:00:00,Nott'm Forest,3.0,Newcastle,4.0,3,4
+26,2025-02-23,16:30:00,Liverpool,2.0,Man City,0.0,5,4
 27,2025-02-25,19:30:00,Bournemouth,,Brighton,,3,3
 27,2025-02-25,19:30:00,Aston Villa,,Crystal Palace,,3,3
 27,2025-02-25,19:30:00,Fulham,,Wolves,,3,2
